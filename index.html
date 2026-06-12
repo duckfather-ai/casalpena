@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CASAL PEÑA — Cannes Lions</title>
+<style>
+  :root{
+    --bg:#0c0c0e; --panel:#15151a; --panel2:#1c1c23; --line:#2a2a33;
+    --ink:#f4f1ea; --mute:#9a9aa6; --faint:#6b6b76;
+    --gold:#d4af37; --gp:#e8c75a; --g:#d4af37; --s:#c3c7cc; --b:#b07a4a;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  a{color:var(--gold);text-decoration:none}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(12,12,14,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:58px}
+  nav .brand{font-weight:800;letter-spacing:.18em;color:var(--ink);white-space:nowrap;cursor:pointer}
+  nav .brand b{color:var(--gold)}
+  .tabs{display:flex;gap:8px;flex:none}
+  .tab{background:transparent;border:1px solid var(--line);color:var(--mute);padding:7px 15px;border-radius:999px;font-size:13px;cursor:pointer;font-weight:600;letter-spacing:.02em;font-family:inherit}
+  .tab:hover{color:var(--ink);border-color:var(--mute)}
+  .tab.active{background:var(--gold);border-color:var(--gold);color:#1a1400}
+  .view[hidden]{display:none!important}
+  .home-hero{max-width:1180px;margin:0 auto;padding:clamp(56px,10vw,100px) 22px 70px;text-align:center}
+  .home-title{font-size:clamp(54px,13vw,128px);font-weight:800;letter-spacing:.02em;line-height:.94;margin:14px 0 14px}
+  .home-sub{color:var(--mute);font-size:clamp(16px,2.4vw,20px);max-width:640px;margin:0 auto 46px;line-height:1.5}
+  .entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
+  .entry{display:block;text-align:left;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:30px;cursor:pointer;transition:transform .15s,border-color .15s;color:var(--ink);position:relative;overflow:hidden;font-family:inherit}
+  .entry:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .entry:before{content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:radial-gradient(circle,rgba(212,175,55,.16),transparent 70%)}
+  .entry-fest{color:var(--gold);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+  .entry-stat{font-size:54px;font-weight:800;letter-spacing:-.02em;margin:10px 0 2px;line-height:1}
+  .entry-stat span{font-size:18px;color:var(--faint);font-weight:600}
+  .entry-meta{color:var(--mute);font-size:14px}
+  .entry-go{margin-top:20px;color:var(--gold);font-weight:600;font-size:14px}
+  .entry.dnad .entry-stat{color:var(--faint)}
+  .subnav{border-bottom:1px solid var(--line);background:rgba(20,20,26,.4)}
+  .subnav .wrap{display:flex;gap:20px;overflow-x:auto;height:46px;align-items:center}
+  .subnav a{color:var(--mute);font-size:13px;white-space:nowrap}
+  .subnav a:hover{color:var(--gold)}
+  .wip-box{background:var(--panel);border:1px dashed var(--line);border-radius:var(--radius);padding:clamp(36px,7vw,60px) 30px;text-align:center}
+  .wip-box .big{font-size:22px;color:var(--ink);margin-bottom:10px;font-weight:700}
+  .wip-box p{color:var(--mute);font-size:15px;max-width:560px;margin:0 auto;line-height:1.6}
+
+  header{padding:74px 0 40px;border-bottom:1px solid var(--line);background:radial-gradient(900px 320px at 80% -10%, rgba(212,175,55,.12), transparent)}
+  .eyebrow{color:var(--gold);letter-spacing:.24em;text-transform:uppercase;font-size:12px;font-weight:600}
+  h1{font-size:clamp(46px,10vw,104px);line-height:.96;margin:14px 0 10px;letter-spacing:.02em;font-weight:800}
+  .names{color:var(--mute);font-size:clamp(16px,2.6vw,21px);letter-spacing:.02em}
+  .names b{color:var(--ink);font-weight:600}
+  .bignum{display:flex;align-items:baseline;gap:16px;margin-top:36px;flex-wrap:wrap}
+  .bignum .n{font-size:clamp(64px,13vw,132px);font-weight:800;line-height:.86;color:var(--gold);letter-spacing:-.03em}
+  .bignum .lab{color:var(--mute);font-size:16px;max-width:360px}
+  .bd-line{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:22px}
+  .bd-line .m{font-size:13.5px;padding:5px 12px;min-width:0;font-weight:700}
+  .bd-line .bd-sep{color:var(--faint);font-size:13px;letter-spacing:.04em;margin-left:2px}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line);scroll-margin-top:72px}
+  h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:22px}
+  h3{font-size:21px;margin-bottom:4px;letter-spacing:-.01em}
+
+  .story{font-size:clamp(18px,2.4vw,23px);line-height:1.55;max-width:840px;color:var(--ink)}
+  .story p{margin-bottom:18px}
+  .story .hl{color:var(--gold);font-weight:600}
+  .story .dim{color:var(--mute)}
+
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:8px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:center}
+  .stat .v{font-size:38px;font-weight:800;color:var(--gold);letter-spacing:-.02em}
+  .stat .l{color:var(--mute);font-size:12.5px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase}
+
+  .gpgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .gpcard{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s}
+  .gpcard:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .gpcard:before{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(232,199,90,.18),transparent 70%)}
+  .gpcard .disc{color:var(--gp);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+  .gpcard h3{margin-top:8px}
+  .gpcard .meta{color:var(--mute);font-size:13.5px;margin-top:4px}
+  .gpcard .split{margin-top:14px;font-size:13px;color:var(--faint)}
+  .gpcard .watch{margin-top:14px;color:var(--gold);font-size:13px;font-weight:600}
+
+  .chartwrap{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .lc{display:block;width:100%;height:auto;overflow:visible}
+  .cg{stroke:var(--line);stroke-width:1;shape-rendering:crispEdges}
+  .cyl{fill:var(--faint);font-size:11px;text-anchor:end;font-family:inherit}
+  .cxl{fill:var(--mute);font-size:11px;font-family:inherit}
+  .cline{fill:none;stroke:var(--gold);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+  .cdot{fill:var(--bg);stroke:var(--gold);stroke-width:1.8}
+  .cguide{stroke:var(--gold);stroke-dasharray:3 4;opacity:.5}
+  .cactive{fill:var(--gold);stroke:var(--bg);stroke-width:2}
+  .lc-tip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);background:#1c1c23;border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:144px;max-width:260px;box-shadow:0 14px 34px -12px #000;z-index:30}
+  .lc-tip .t-hd{color:var(--gold);font-weight:700;letter-spacing:.05em;font-size:13px}
+  .lc-tip .t-tot{font-size:20px;font-weight:800;margin:1px 0 7px;letter-spacing:-.01em}
+  .lc-tip .t-bd{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+  .lc-tip .t-items{color:var(--mute);font-size:11.5px;line-height:1.5}
+  .bar-row{display:flex;align-items:center;gap:12px;margin:9px 0}
+  .bar-row .k{width:200px;font-size:13.5px;color:var(--mute);text-align:right;flex:none}
+  .bar-track{flex:1;background:#101015;border-radius:7px;overflow:hidden;height:26px;display:flex}
+  .seg{height:100%}
+  .seg.gp{background:var(--gp)}.seg.g{background:var(--g)}.seg.s{background:var(--s)}.seg.b{background:var(--b)}
+  .bar-row .val{width:34px;font-weight:700;font-size:14px;flex:none}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;color:var(--mute);font-size:12.5px}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:middle}
+  .d-gp{background:var(--gp)}.d-g{background:var(--g)}.d-s{background:var(--s)}.d-b{background:var(--b)}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  input[type=search],select{background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:9px 12px;border-radius:9px;font-size:13.5px;outline:none}
+  input[type=search]{min-width:230px}
+  input[type=search]:focus,select:focus{border-color:var(--gold)}
+  .chip{background:var(--panel);border:1px solid var(--line);color:var(--mute);padding:7px 12px;border-radius:999px;font-size:12.5px;cursor:pointer;user-select:none}
+  .chip.on{background:var(--gold);border-color:var(--gold);color:#1a1400;font-weight:700}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{padding:11px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{color:var(--faint);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;user-select:none;background:var(--bg);padding-top:14px;padding-bottom:14px}
+  th:hover{color:var(--ink)}
+  tbody tr{cursor:pointer}
+  tbody tr:first-child td{padding-top:14px}
+  td.title{white-space:normal;font-weight:600;min-width:220px}
+  td.title .play{color:var(--gold);margin-right:8px;opacity:.7}
+  tbody tr:hover td{background:rgba(212,175,55,.06)}
+  tbody tr:hover td.title .play{opacity:1}
+  .m{display:inline-block;min-width:20px;text-align:center;font-weight:700;border-radius:6px;padding:1px 6px;font-size:12px}
+  .m.gp{background:rgba(232,199,90,.18);color:var(--gp)}
+  .m.g{background:rgba(212,175,55,.16);color:var(--g)}
+  .m.s{background:rgba(195,199,204,.14);color:var(--s)}
+  .m.b{background:rgba(176,122,74,.18);color:var(--b)}
+  .m.z{color:var(--faint)}
+  .ag{color:var(--mute)}
+  .count-line{color:var(--mute);font-size:13px;margin-top:10px}
+  .totrow td{border-top:2px solid var(--line);padding-top:14px;font-weight:800;font-size:14px}
+  .totrow td:first-child{color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+  tbody tr:hover .totrow td,.totrow:hover td{background:transparent}
+  .note{color:var(--faint);font-size:12.5px;margin-top:14px;max-width:760px}
+  .m.yellow{background:rgba(245,212,0,.16);color:#f5d400}
+  .m.graphite{background:rgba(160,165,170,.16);color:#bcc1c7}
+  .m.wood{background:rgba(169,116,63,.22);color:#c8915a}
+  .m.black{background:#0b0b0d;color:#f0f0f0;border:1px solid #3a3a44}
+  .m.white{background:#f4f1ea;color:#15151a;font-weight:800}
+  .seg.yellow{background:#f5d400}.seg.graphite{background:#9aa0a6}.seg.wood{background:#a9743f}.seg.black{background:#e6e6e6}.seg.white{background:#fff}
+  .dot.d-yellow{background:#f5d400}.dot.d-graphite{background:#9aa0a6}.dot.d-wood{background:#a9743f}.dot.d-black{background:#e6e6e6}.dot.d-white{background:#fff}
+  .entry.dnad .entry-stat{color:#f5d400}
+  .entry.oneshow .entry-stat{color:#d4af37}
+  .allbanner{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1080px;margin:18px auto 0;width:100%;text-align:left;background:linear-gradient(110deg,#1a1714,#15151a 60%);border:1px solid var(--line);border-radius:18px;padding:26px 30px;cursor:pointer;transition:transform .15s,border-color .15s;color:var(--ink);font-family:inherit;position:relative;overflow:hidden}
+  .allbanner:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .allbanner:before{content:"";position:absolute;top:-60px;right:120px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.14),transparent 70%)}
+  .allbanner-stat{font-size:46px;font-weight:800;letter-spacing:-.02em;line-height:1;margin:6px 0 4px;color:var(--gold)}
+  .allbanner-go{color:var(--gold);font-weight:700;font-size:14px;white-space:nowrap;flex:none}
+  /* unified tier ladder */
+  .uni-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:8px}
+  @media(max-width:820px){.uni-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:480px){.uni-grid{grid-template-columns:repeat(2,1fr)}}
+  .uni{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 16px;text-align:center}
+  .uni .uv{font-size:34px;font-weight:800;letter-spacing:-.02em}
+  .uni .ul{color:var(--ink);font-size:14px;font-weight:700;margin-top:3px}
+  .uni .um{color:var(--faint);font-size:11px;margin-top:6px;line-height:1.45}
+  .festrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
+  .festcard{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:20px;cursor:pointer;transition:transform .15s,border-color .15s}
+  .festcard:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .festcard .fn{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--gold)}
+  .festcard .fl{color:var(--mute);font-size:13px;margin-top:2px}
+  .festcard .fx{color:var(--faint);font-size:12px;margin-top:8px}
+  .reach{display:inline-flex;gap:3px;vertical-align:middle}
+  .reach i{width:7px;height:7px;border-radius:50%;background:var(--line);display:inline-block}
+  .reach i.on{background:var(--gold)}
+  .crown td{background:rgba(212,175,55,.05)}
+  .fcell{font-weight:700}
+  .fcell.z{color:var(--faint);font-weight:400}
+  .home-portrait{max-width:820px;margin:58px auto 0}
+  .home-portrait img{width:100%;border-radius:16px;border:1px solid var(--line);display:block}
+  .home-portrait .cap{color:var(--mute);font-size:13.5px;margin-top:14px;letter-spacing:.02em;text-align:center}
+  .home-portrait .cap b{color:var(--ink);font-weight:600}
+  .home-portrait.missing{max-width:560px;border:1px dashed var(--line);border-radius:16px;padding:30px;text-align:center}
+  .home-portrait.missing img{display:none}
+  .home-portrait.missing .cap:before{content:"📷 Save the team photo as team.jpg in the casal-lions folder to show it here. ";color:var(--faint);display:block;margin-bottom:6px}
+  /* One Show tiers */
+  .m.penta{background:linear-gradient(135deg,#6ff0d6,#1fb89e);color:#06231d;font-weight:800}
+  .m.bod{background:linear-gradient(135deg,#f4dd7e,#d4af37);color:#1a1400;font-weight:800}
+  .m.merit{background:rgba(150,150,162,.16);color:#b9b9c4}
+  .seg.penta{background:#36d6b6}.seg.bod{background:#f4dd7e}.seg.merit{background:#6f6f7a}
+  .dot.d-penta{background:#36d6b6}.dot.d-bod{background:#f4dd7e}.dot.d-merit{background:#6f6f7a}
+  .lead{color:var(--mute);font-size:18px;max-width:740px;margin-bottom:26px;line-height:1.55}
+  .lgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .lcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .lcard .lstat{font-size:42px;font-weight:800;color:var(--gold);letter-spacing:-.02em;line-height:1;margin-bottom:12px}
+  .lcard .lstat span{font-size:19px;color:var(--faint);font-weight:600}
+  .lcard h3{font-size:18px;margin-bottom:7px;letter-spacing:-.01em}
+  .lcard p{color:var(--mute);font-size:14px;line-height:1.58}
+  .thesis{margin-top:18px;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--radius);padding:26px 28px}
+  .thesis .lab{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+  .thesis p{font-size:19px;line-height:1.5;margin-top:8px}
+  .thesis p b{color:var(--ink)}
+  footer{padding:40px 0 70px;color:var(--faint);font-size:12.5px}
+
+  /* modal */
+  .overlay{position:fixed;inset:0;background:rgba(6,6,8,.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:100;padding:22px}
+  .overlay.show{display:flex}
+  .modal{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;max-width:520px;width:100%;padding:30px;position:relative;box-shadow:0 30px 80px -20px #000}
+  .modal .disc{color:var(--gp);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+  .modal h3{font-size:30px;margin:8px 0 4px;letter-spacing:-.01em}
+  .modal .meta{color:var(--mute);font-size:14px}
+  .modal{max-height:90vh;overflow-y:auto}
+  .gallery{position:relative;margin:18px 0 4px}
+  .modal .media{background:#000;border-radius:11px;overflow:hidden}
+  .modal .media:fullscreen{display:flex;align-items:center;justify-content:center;background:#000}
+  .modal .media video,.modal .media img{width:100%;border-radius:11px;background:#000;display:block}
+  .modal .media:fullscreen video,.modal .media:fullscreen img{height:100%;width:auto;max-width:100%;border-radius:0}
+  .modal .media .audio{padding:26px;background:#0f0f14;text-align:center}
+  .modal .media .audio .lab{color:var(--mute);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+  .modal .media audio{width:100%}
+  .navbtn{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px);transition:background .15s}
+  .navbtn:hover{background:rgba(212,175,55,.9);color:#1a1400}
+  .navbtn.prev{left:10px}.navbtn.next{right:10px}
+  .gallery.multi .navbtn{display:flex}
+  .gbar{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  .counter{color:var(--mute);font-size:12.5px;letter-spacing:.04em}
+  .gallery:not(.multi) .counter{visibility:hidden}
+  .fullbtn{background:transparent;border:1px solid var(--line);color:var(--mute);font-size:12.5px;padding:6px 12px;border-radius:8px;cursor:pointer}
+  .fullbtn:hover{color:var(--ink);border-color:var(--gold)}
+  .modal .splits{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+  .modal .credit{color:var(--faint);font-size:13px;margin-bottom:22px}
+  .btn{display:block;width:100%;text-align:center;padding:14px;border-radius:11px;font-weight:700;font-size:15px;margin-top:10px;cursor:pointer;border:1px solid var(--line)}
+  .btn.primary{background:var(--gold);color:#1a1400;border-color:var(--gold)}
+  .btn.primary:hover{filter:brightness(1.07)}
+  .btn.ghost{background:transparent;color:var(--mute)}
+  .btn.ghost:hover{color:var(--ink);border-color:var(--mute)}
+  .modal .x{position:absolute;top:16px;right:18px;color:var(--mute);font-size:24px;cursor:pointer;line-height:1}
+  .modal .x:hover{color:var(--ink)}
+
+  @media(max-width:820px){
+    .wrap{padding:0 16px}
+    section{padding:44px 0}
+    header{padding:52px 0 30px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .gpgrid{grid-template-columns:1fr}
+    .lgrid{grid-template-columns:1fr}
+    .entry-grid{grid-template-columns:1fr}
+    .tab{padding:6px 12px;font-size:12.5px}
+    .bar-row .k{width:118px}
+    .controls input[type=search]{flex:1 1 100%;min-width:0}
+  }
+  @media(max-width:560px){
+    nav .wrap{gap:13px;height:54px}
+    nav .brand{font-size:13px;letter-spacing:.12em}
+    nav a.lnk{font-size:12.5px}
+    header{padding:38px 0 24px}
+    h1{font-size:clamp(40px,13vw,60px)}
+    .names{font-size:15px}
+    .story{font-size:17px}
+    .story p{margin-bottom:14px}
+    .bignum{margin-top:22px;gap:12px}
+    .bignum .lab{width:auto;font-size:14px}
+    .stats{gap:10px}
+    .stat{padding:14px}.stat .v{font-size:30px}
+    h2{margin-bottom:16px}
+    /* collapse table to essentials — metals live in the popup */
+    #tbl th:nth-child(4),#tbl td:nth-child(4),
+    #tbl th:nth-child(5),#tbl td:nth-child(5),
+    #tbl th:nth-child(6),#tbl td:nth-child(6),
+    #tbl th:nth-child(7),#tbl td:nth-child(7),
+    #tbl th:nth-child(8),#tbl td:nth-child(8){display:none}
+    th,td{padding:11px 8px;white-space:normal}
+    td.title{min-width:0;font-size:14px}
+    .ag{font-size:12.5px}
+    .bar-row .k{width:92px;font-size:11.5px;gap:8px}
+    .bar-row .val{width:24px;font-size:13px}
+    .chartwrap{padding:16px}
+    .gpcard{padding:18px}
+    .overlay{padding:10px}
+    .modal{padding:20px;border-radius:14px}
+    .modal h3{font-size:23px}
+    .navbtn{width:34px;height:34px;font-size:20px}
+    .fullbtn{padding:6px 10px}
+  }
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand" onclick="showView('home')">CASAL <b>PEÑA</b></span>
+  <div class="tabs">
+    <button class="tab" data-v="cannes" onclick="showView('cannes')">Cannes Lions</button>
+    <button class="tab" data-v="dnad" onclick="showView('dnad')">D&amp;AD</button>
+    <button class="tab" data-v="oneshow" onclick="showView('oneshow')">The One Show</button>
+    <button class="tab" data-v="all" onclick="showView('all')">All Awards</button>
+  </div>
+</div></nav>
+
+<!-- LANDING -->
+<div id="view-home" class="view">
+  <div class="home-hero">
+    <h1 class="home-title">CASAL&nbsp;PEÑA</h1>
+    <p class="home-sub">Ricardo Casal &amp; Juan Javier Peña Plaza — an award record across the world's creative festivals. Pick a festival to explore.</p>
+    <div class="entry-grid">
+      <button class="entry" onclick="showView('cannes')">
+        <div class="entry-fest">Cannes Lions</div>
+        <div class="entry-stat">96 <span>Lions</span></div>
+        <div class="entry-meta">3 Grand Prix · 2016–2025</div>
+        <div class="entry-go">Explore →</div>
+      </button>
+      <button class="entry dnad" onclick="showView('dnad')">
+        <div class="entry-fest">D&amp;AD</div>
+        <div class="entry-stat">37 <span>Pencils</span></div>
+        <div class="entry-meta">1 Black · 1 White · 6 Yellow · 2016–2026</div>
+        <div class="entry-go">Explore →</div>
+      </button>
+      <button class="entry oneshow" onclick="showView('oneshow')">
+        <div class="entry-fest">The One Show</div>
+        <div class="entry-stat" id="home-os-stat">— <span>Pencils</span></div>
+        <div class="entry-meta" id="home-os-meta">Gold · Silver · Bronze · Merit</div>
+        <div class="entry-go">Explore →</div>
+      </button>
+    </div>
+    <button class="allbanner" onclick="showView('all')">
+      <div class="allbanner-l">
+        <div class="entry-fest">All Awards · Consolidated</div>
+        <div class="allbanner-stat" id="home-all-stat">—</div>
+        <div class="entry-meta" id="home-all-meta">Every trophy across the three festivals, unified and analyzed</div>
+      </div>
+      <div class="allbanner-go">See everything together →</div>
+    </button>
+    <div class="home-portrait" id="homePortrait">
+      <img src="team.jpg" alt="Ricardo Casal &amp; Juan Javier Peña Plaza" onerror="this.closest('.home-portrait').classList.add('missing')">
+      <div class="cap"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — creative partnership</div>
+    </div>
+  </div>
+</div>
+
+<!-- CANNES LIONS -->
+<div id="view-cannes" class="view" hidden>
+<div class="subnav"><div class="wrap">
+  <a href="#story">The Story</a>
+  <a href="#gp">Grand Prix</a>
+  <a href="#work">The Work</a>
+  <a href="#year">By Year</a>
+  <a href="#brand">By Brand</a>
+  <a href="#learnings">Conclusions</a>
+</div></div>
+
+<header><div class="wrap">
+  <div class="eyebrow">Casal Peña · Festival</div>
+  <h1>Cannes&nbsp;Lions</h1>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — a creative partnership across DAVID and GUT.</p>
+  <div class="bignum">
+    <div class="n">96</div>
+    <div class="lab"><b>Cannes Lions.</b> Three Grand Prix, across three disciplines, over nine years — built idea by idea.</div>
+  </div>
+  <div class="bd-line" id="cBreakdown"></div>
+</div></header>
+
+<!-- STORY -->
+<section id="story"><div class="wrap">
+  <h2>The story of the 95</h2>
+  <div class="story">
+    <p>It started in Buenos Aires in 2016 with <span class="hl">Manboobs</span> — a breast-cancer self-exam that used men's chests to outwit social-media censorship, and won a <span class="hl">Grand Prix for Good</span> plus ten Golds in a single stroke.</p>
+    <p>A year later in Miami came <span class="hl">Google Home of the Whopper</span>, the 15-second ad that hijacked a million voice assistants and took the <span class="hl">Direct Grand Prix</span>. Those two ideas alone account for nearly a third of the haul.</p>
+    <p>Then the engine: <span class="dim">Burger King, Heinz, Popeyes, NotCo, Michelob, DoorDash, Google</span> — wave after wave of idea-led, earned-media work through the DAVID years and into GUT, from Miami to São Paulo to Mexico City. A pandemic pause in 2021, then the third Grand Prix: <span class="hl">Real Tone</span>, in <span class="hl">Mobile</span>, for making the camera see every skin tone.</p>
+    <p class="dim" style="font-size:17px">Ninety-six Lions. Three Grand Prix. One partnership.</p>
+  </div>
+  <div class="stats" style="margin-top:34px">
+    <div class="stat"><div class="v">96</div><div class="l">Lions</div></div>
+    <div class="stat"><div class="v">3</div><div class="l">Grand Prix</div></div>
+    <div class="stat"><div class="v">33</div><div class="l">Campaigns</div></div>
+    <div class="stat"><div class="v">9</div><div class="l">Years</div></div>
+    <div class="stat"><div class="v">2</div><div class="l">Agencies</div></div>
+  </div>
+</div></section>
+
+<!-- GRAND PRIX -->
+<section id="gp"><div class="wrap">
+  <h2>The 3 Grand Prix — tap to watch</h2>
+  <div class="gpgrid" id="gpCards"></div>
+</div></section>
+
+<!-- WORK -->
+<section id="work"><div class="wrap">
+  <h2>The work — tap any idea to watch it</h2>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search idea or brand…" />
+    <select id="fAgency"><option value="">All agencies</option></select>
+    <select id="fYear"><option value="">All years</option></select>
+    <span class="chip" data-metal="gp">Grand Prix</span>
+    <span class="chip" data-metal="g">Gold</span>
+    <span class="chip" data-metal="s">Silver</span>
+    <span class="chip" data-metal="b">Bronze</span>
+  </div>
+  <div style="overflow-x:auto">
+  <table id="tbl">
+    <thead><tr>
+      <th data-k="year">Year</th>
+      <th data-k="title">Idea</th>
+      <th data-k="brand">Brand</th>
+      <th data-k="agency">Agency</th>
+      <th data-k="gp" style="text-align:center">GP</th>
+      <th data-k="g" style="text-align:center">G</th>
+      <th data-k="s" style="text-align:center">S</th>
+      <th data-k="b" style="text-align:center">B</th>
+      <th data-k="total" style="text-align:center">Lions</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+    <tfoot><tr class="totrow">
+      <td colspan="4">Total per colour</td>
+      <td style="text-align:center" id="ct-gp"></td>
+      <td style="text-align:center" id="ct-g"></td>
+      <td style="text-align:center" id="ct-s"></td>
+      <td style="text-align:center" id="ct-b"></td>
+      <td style="text-align:center" id="ct-t"></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p class="count-line"><b id="cCount"></b> ideas shown · tap a row to watch the case film</p>
+</div></section>
+
+<!-- BY YEAR -->
+<section id="year"><div class="wrap">
+  <h2>Lions by year — the arc</h2>
+  <div class="chartwrap" id="yearChart"></div>
+  <div class="legend">
+    <span><span class="dot d-gp"></span>Grand Prix</span>
+    <span><span class="dot d-g"></span>Gold</span>
+    <span><span class="dot d-s"></span>Silver</span>
+    <span><span class="dot d-b"></span>Bronze</span>
+  </div>
+  <p class="note"><b style="color:var(--gold)">Hover any year</b> to see its full breakdown and the ideas behind it. 2016–2017 ≈ half the partnership's Lions; 2021 = the pandemic pause; DAVID = the explosive peak, GUT = the steady volume era.</p>
+</div></section>
+
+<!-- BY BRAND -->
+<section id="brand"><div class="wrap">
+  <h2>Lions by brand — where they come from</h2>
+  <div class="chartwrap" id="brandChart"></div>
+  <p class="note"><b style="color:var(--gold)">Hover any brand</b> to see its breakdown and campaigns. Burger King is the engine; MACMA delivered the most Lions-per-campaign — including a Grand Prix — from just two charity ideas.</p>
+</div></section>
+
+<!-- CONCLUSIONS -->
+<section id="learnings"><div class="wrap">
+  <h2>Conclusions &amp; Learnings</h2>
+  <p class="lead">What 96 Lions across nine years and two agencies actually reveal about <i>how</i> Casal Peña win — the patterns underneath the trophies.</p>
+  <div class="lgrid">
+
+    <div class="lcard">
+      <div class="lstat">28<span> Lions</span></div>
+      <h3>Two ideas, nearly a third of everything</h3>
+      <p>Manboobs and Google Home of the Whopper — both DAVID, both 2016–17 — account for ~30% of the entire haul. One won <i>wide</i> (≈15 different Lion categories at once), the other <i>deep</i> (10 Golds from a single idea). The record is built on outlier swings, not steady base hits.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">~½</div>
+      <h3>The 2016–17 supernova</h3>
+      <p>Close to half of every Lion landed in just those two years. It's the clearest pattern in the data: when an idea is big enough it doesn't win one Lion — it sweeps a dozen across every discipline simultaneously. Scale of idea beats volume of output.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">3<span> / 3</span></div>
+      <h3>Three Grand Prix, three disciplines</h3>
+      <p>Good (Manboobs, 2016), Direct (Google Home of the Whopper, 2017), Mobile (Real Tone, 2022). There's no "home" category — they don't win by owning a craft, they win wherever the idea naturally lives. Range, not specialism.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">15</div>
+      <h3>MACMA: the efficiency record</h3>
+      <p>Fifteen Lions — including a Grand Prix — from just two charity ideas. Burger King is the <i>volume</i> engine of the body of work; MACMA is the <i>efficiency</i> one, the highest Lions-per-idea of the entire career.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">0</div>
+      <h3>Won on ideas, not craft</h3>
+      <p>Zero craft Grand Prix. The metals cluster in Direct, Mobile, Social, PR, Media, Innovation and Health — the invention-and-earned-media end of the spectrum. Almost nothing in Film Craft, Print or Industry Craft. The award is for the <i>thought</i>, not the finish.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">2</div>
+      <h3>Two distinct winning modes</h3>
+      <p>The <b style="color:var(--ink)">purpose</b> work breaks a taboo or a bias for a cause (Manboobs → breast-cancer detection; Real Tone → camera racial bias) and wins the Grand Prix. The <b style="color:var(--ink)">brand</b> work hijacks culture with an earned-media stunt (Google Home, BK BOT) and wins by volume. Same duo, two playbooks.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">2021<span> → 0</span></div>
+      <h3>A zero, then a rebuild</h3>
+      <p>The pandemic took 2021 to nothing. What followed wasn't another supernova but a steady GUT-era cadence — Real Tone's Grand Prix plus a stream of 1–3-Lion ideas through 2025. Proof the engine survived the agency move intact.</p>
+    </div>
+
+    <div class="lcard">
+      <div class="lstat">→</div>
+      <h3>DAVID built the peaks; GUT built the base</h3>
+      <p>Every blockbuster and every Grand Prix is rooted in the DAVID years. GUT is prolific and consistent, but the next 14-Lion monster hasn't landed there yet — arguably the one chapter of this story still unwritten.</p>
+    </div>
+
+  </div>
+
+  <div class="thesis">
+    <div class="lab">The throughline</div>
+    <p>Casal Peña don't win by being everywhere a little. They win by making a handful of ideas <b>big enough to sweep an entire festival</b>, and by knowing which ideas are <b>cause</b> — built to win a Grand Prix — and which are <b>culture</b> — built to win the room. Ninety-six Lions, three Grand Prix, one method: <b>bet on the idea.</b></p>
+  </div>
+</div></section>
+</div><!-- /view-cannes -->
+
+<!-- D&AD -->
+<div id="view-dnad" class="view" hidden>
+<div class="subnav"><div class="wrap">
+  <a href="#d-story">The Story</a>
+  <a href="#d-pencils">Top Pencils</a>
+  <a href="#d-work">The Work</a>
+  <a href="#d-year">By Year</a>
+  <a href="#d-brand">By Brand</a>
+  <a href="#d-learn">Conclusions</a>
+</div></div>
+
+<header><div class="wrap">
+  <div class="eyebrow">Casal Peña · Festival</div>
+  <h1>D&amp;AD</h1>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — the Pencil record across DAVID and GUT.</p>
+  <div class="bignum">
+    <div class="n" style="color:#f5d400">37</div>
+    <div class="lab"><b>D&amp;AD Pencils.</b> Across 16 ideas over a decade — topped by a <b style="color:#fff">Black Pencil</b>, D&amp;AD's rarest award.</div>
+  </div>
+  <div class="bd-line" id="dBreakdown"></div>
+</div></header>
+
+<section id="d-story"><div class="wrap">
+  <h2>The story of the 37</h2>
+  <div class="story">
+    <p>If Cannes rewards the splash, <span class="hl">D&amp;AD rewards the craft and the integrity of the idea</span> — its Pencils are famously harder to win. And the record reaches the very top: <span style="color:#fff;font-weight:600">Real Tone took a Black Pencil</span> in 2022 — D&amp;AD's rarest, most coveted award.</p>
+    <p>It opens just as strong: <span class="hl">Manboobs</span> won a <span style="color:#f4f1ea;font-weight:600">White Pencil</span> for social good <i>and</i> a Yellow — five Pencils across 2016–17. Then <span class="hl">Google Home of the Whopper</span> swept <span class="hl">nine</span> (three of them Yellow), and the Burger King × DAVID partnership itself won a Yellow for four years of work.</p>
+    <p class="dim" style="font-size:17px">Thirty-seven Pencils. A Black. A White. Six Yellows. The summit, reached.</p>
+  </div>
+  <div class="stats" style="margin-top:34px">
+    <div class="stat"><div class="v" style="color:#fff">1</div><div class="l">Black ★</div></div>
+    <div class="stat"><div class="v" style="color:#f4f1ea">1</div><div class="l">White</div></div>
+    <div class="stat"><div class="v" style="color:#f5d400">6</div><div class="l">Yellow</div></div>
+    <div class="stat"><div class="v" style="color:#f5d400">37</div><div class="l">Pencils</div></div>
+    <div class="stat"><div class="v" style="color:#f5d400">16</div><div class="l">Ideas</div></div>
+  </div>
+</div></section>
+
+<section id="d-pencils"><div class="wrap">
+  <h2>The top Pencils — Black, White &amp; Yellow — tap to watch</h2>
+  <div class="gpgrid" id="dPencilCards"></div>
+</div></section>
+
+<section id="d-work"><div class="wrap">
+  <h2>The work — tap any idea to watch it</h2>
+  <div style="overflow-x:auto">
+  <table id="dtbl">
+    <thead><tr>
+      <th>Year</th><th>Idea</th><th>Brand</th><th>Agency</th>
+      <th style="text-align:center">Black</th><th style="text-align:center">White</th><th style="text-align:center">Yellow</th><th style="text-align:center">Graphite</th><th style="text-align:center">Wood</th><th style="text-align:center">Pencils</th>
+    </tr></thead>
+    <tbody id="dRows"></tbody>
+    <tfoot><tr class="totrow">
+      <td colspan="4">Total per colour</td>
+      <td style="text-align:center" id="dt-black"></td>
+      <td style="text-align:center" id="dt-white"></td>
+      <td style="text-align:center" id="dt-yellow"></td>
+      <td style="text-align:center" id="dt-graphite"></td>
+      <td style="text-align:center" id="dt-wood"></td>
+      <td style="text-align:center" id="dt-t"></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p class="count-line">16 ideas · tap a row to watch the case film</p>
+</div></section>
+
+<section id="d-year"><div class="wrap">
+  <h2>Pencils by year</h2>
+  <div class="chartwrap" id="dYearChart"></div>
+  <div class="legend">
+    <span><span class="dot d-black"></span>Black</span>
+    <span><span class="dot d-white"></span>White</span>
+    <span><span class="dot d-yellow"></span>Yellow</span>
+    <span><span class="dot d-graphite"></span>Graphite</span>
+    <span><span class="dot d-wood"></span>Wood</span>
+  </div>
+  <p class="note"><b style="color:#f5d400">Hover any year</b> for its breakdown. The haul peaks 2017–2018 (DAVID/Burger King); the GUT era is quieter but lands the biggest prize of all — Real Tone's <b style="color:#fff">Black Pencil</b> in 2022.</p>
+</div></section>
+
+<section id="d-brand"><div class="wrap">
+  <h2>Pencils by brand</h2>
+  <div class="chartwrap" id="dBrandChart"></div>
+  <p class="note"><b style="color:#f5d400">Hover any brand</b> for its breakdown. Burger King is the D&amp;AD engine — even the agency–client relationship itself won a Yellow.</p>
+</div></section>
+
+<section id="d-learn"><div class="wrap">
+  <h2>Conclusions &amp; Learnings</h2>
+  <p class="lead">What the Pencils say about how Casal Peña win at the craft festival — where they reached the very summit.</p>
+  <div class="lgrid">
+    <div class="lcard"><div class="lstat" style="color:#fff">★</div><h3>A Black Pencil — the summit, reached</h3><p>D&amp;AD's rarest, most coveted award — often awarded to no one in a category — went to <b style="color:#fff">Real Tone</b> in 2022, for making the camera see every skin tone. The single highest honour in the entire record, at either festival.</p></div>
+    <div class="lcard"><div class="lstat" style="color:#f4f1ea">White</div><h3>A White Pencil for good</h3><p>D&amp;AD's White Pencil honours work that drives real social change. <b>Manboobs</b> earned one for breast-cancer detection — alongside a Yellow and craft pencils. Five in all from one cause-led idea.</p></div>
+    <div class="lcard"><div class="lstat" style="color:#f5d400">9</div><h3>Google Home of the Whopper, the most-pencilled</h3><p>Nine Pencils — three of them Yellow — from a single idea. D&amp;AD's craft jury rewarded it as richly as Cannes did, which at the pickier house is the harder feat.</p></div>
+    <div class="lcard"><div class="lstat" style="color:#f5d400">6</div><h3>Six Yellow Pencils</h3><p>The tier just beneath Black — across Manboobs, Google Home (×3), the Burger King × DAVID collaboration and Pope Yes. A serious Yellow haul on top of the Black and the White.</p></div>
+    <div class="lcard"><div class="lstat">BK</div><h3>Burger King is the engine</h3><p>The bulk of the Pencils trace to one client — and the agency–brand relationship was decorated on its own merits with a "4 years of collaboration" Yellow. Rare for any pairing.</p></div>
+    <div class="lcard"><div class="lstat">↗</div><h3>The idea travels</h3><p>Wins crossed festivals both ways — StackeRTweet was only a Cannes <i>shortlist</i> yet took a D&amp;AD Wood; Real Tone's Cannes Grand Prix became a D&amp;AD <b style="color:#fff">Black</b>. Strong ideas don't depend on one jury.</p></div>
+  </div>
+  <div class="thesis">
+    <div class="lab">The throughline</div>
+    <p>At Cannes they win <b>broad</b>; at D&amp;AD they win <b>deep — and at the very top</b>. The same ideas, judged on craft, reached the summit: a <b>Black Pencil</b>, a White, six Yellows. Thirty-seven Pencils that prove it's the <b>idea</b>, not just the splash, that holds up.</p>
+  </div>
+</div></section>
+</div>
+
+<!-- THE ONE SHOW -->
+<div id="view-oneshow" class="view" hidden>
+<div class="subnav"><div class="wrap">
+  <a href="#o-story">The Story</a>
+  <a href="#o-top">Top Pencils</a>
+  <a href="#o-work">The Work</a>
+  <a href="#o-year">By Year</a>
+  <a href="#o-brand">By Brand</a>
+  <a href="#o-learn">Conclusions</a>
+</div></div>
+
+<header><div class="wrap">
+  <div class="eyebrow">Casal Peña · Festival</div>
+  <h1>The One Show</h1>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — the Pencil &amp; Merit record across DAVID and GUT.</p>
+  <div class="bignum">
+    <div class="n">46</div>
+    <div class="lab"><b>One Show Pencils.</b> Across 17 winners — crowned by a <b style="color:#36d6b6">Penta Pencil</b> and <b style="color:#f4dd7e">two Best of Discipline</b>, the show's rarest honors.</div>
+  </div>
+  <div class="bd-line" id="oBreakdown"></div>
+</div></header>
+
+<section id="o-story"><div class="wrap">
+  <h2>The story of the 46</h2>
+  <div class="story">
+    <p>The One Show's <span class="hl">Gold Pencil</span> is one of advertising's most coveted prizes — and in 2018 <span class="hl">Google Home of the Whopper</span> didn't just win one, it won <span class="hl">ten</span>, plus a <span style="color:#f4dd7e;font-weight:600">Best of Discipline</span> — the single most-decorated idea anywhere in this entire record, at any festival.</p>
+    <p>That same year, the <span class="hl">Burger King × DAVID</span> partnership took the show's <span style="color:#36d6b6;font-weight:600">Penta Pencil</span> — awarded to the body of work that scored the most points all year. It started with <span class="hl">Manboobs4Boobs</span>' two Golds and ran through the BK engine into the GUT era — <span class="hl">Save It See It</span>, <span class="hl">Vanguards of Photography</span> and <span class="hl">Real Tone</span>, which took a <span style="color:#f4dd7e;font-weight:600">second Best of Discipline</span>.</p>
+    <p class="dim" style="font-size:17px">One Penta Pencil. Two Best of Discipline. Nineteen Golds. Forty-six Pencils.</p>
+  </div>
+  <div class="stats" style="margin-top:34px">
+    <div class="stat"><div class="v" style="color:#36d6b6">1</div><div class="l">Penta ★</div></div>
+    <div class="stat"><div class="v" style="color:#f4dd7e">2</div><div class="l">Best of Disc. ★</div></div>
+    <div class="stat"><div class="v">19</div><div class="l">Gold</div></div>
+    <div class="stat"><div class="v" style="color:var(--s)">11</div><div class="l">Silver</div></div>
+    <div class="stat"><div class="v" style="color:var(--b)">13</div><div class="l">Bronze</div></div>
+  </div>
+</div></section>
+
+<section id="o-top"><div class="wrap">
+  <h2>The top Pencils — Penta, Best of Discipline &amp; Gold — tap to watch</h2>
+  <div class="gpgrid" id="oTopCards"></div>
+</div></section>
+
+<section id="o-work"><div class="wrap">
+  <h2>The work — tap any idea to watch it</h2>
+  <div style="overflow-x:auto">
+  <table id="otbl">
+    <thead><tr>
+      <th>Year</th><th>Idea</th><th>Brand</th><th>Agency</th>
+      <th style="text-align:center">Penta</th><th style="text-align:center">Best of Disc.</th><th style="text-align:center">Gold</th><th style="text-align:center">Silver</th><th style="text-align:center">Bronze</th><th style="text-align:center">Pencils</th>
+    </tr></thead>
+    <tbody id="oRows"></tbody>
+    <tfoot><tr class="totrow">
+      <td colspan="4">Total per tier</td>
+      <td style="text-align:center" id="ot-penta"></td>
+      <td style="text-align:center" id="ot-bod"></td>
+      <td style="text-align:center" id="ot-gold"></td>
+      <td style="text-align:center" id="ot-silver"></td>
+      <td style="text-align:center" id="ot-bronze"></td>
+      <td style="text-align:center" id="ot-t"></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p class="count-line">17 winners · 46 Pencils · tap a row to watch the case film</p>
+</div></section>
+
+<section id="o-year"><div class="wrap">
+  <h2>Awards by year</h2>
+  <div class="chartwrap" id="oYearChart"></div>
+  <div class="legend">
+    <span><span class="dot d-penta"></span>Penta Pencil</span>
+    <span><span class="dot d-bod"></span>Best of Discipline</span>
+    <span><span class="dot d-g"></span>Gold</span>
+    <span><span class="dot d-s"></span>Silver</span>
+    <span><span class="dot d-b"></span>Bronze</span>
+  </div>
+  <p class="note"><b style="color:#d4af37">Hover any year</b> for its breakdown. 2018 is the supernova — Google Home of the Whopper's Best of Discipline and 10 Golds, plus the Burger King × DAVID Penta Pencil.</p>
+</div></section>
+
+<section id="o-brand"><div class="wrap">
+  <h2>Awards by brand</h2>
+  <div class="chartwrap" id="oBrandChart"></div>
+  <p class="note"><b style="color:#d4af37">Hover any brand</b> for its breakdown. Burger King is the One Show engine here too; MACMA delivers the highest Gold-rate per idea.</p>
+</div></section>
+
+<section id="o-learn"><div class="wrap">
+  <h2>Conclusions &amp; Learnings</h2>
+  <p class="lead">What the One Show record reveals — where the partnership reached its single highest peak of decoration.</p>
+  <div class="lgrid">
+    <div class="lcard"><div class="lstat" style="color:#f4dd7e">12</div><h3>The most-decorated idea, anywhere</h3><p>Google Home of the Whopper took a <b style="color:#f4dd7e">Best of Discipline</b>, <b>10 Golds</b> and a Silver — twelve One Show awards from one idea. No single idea won more at any festival in the entire record. The One Show loved it even harder than Cannes.</p></div>
+    <div class="lcard"><div class="lstat" style="color:#f4dd7e">★★</div><h3>Two Best of Discipline — one off the summit</h3><p>One Show's Best of Discipline sits just below Best of Show — the top of a whole craft category. <b>Google Home of the Whopper</b> and <b>Real Tone</b> each took one — putting this work in the rarest company the show offers, twice over.</p></div>
+    <div class="lcard"><div class="lstat" style="color:#36d6b6">★</div><h3>A Penta Pencil — the partnership prize</h3><p>The One Show's <b>Penta Pencil</b> goes to the body of work that scores the most points across the whole year. In 2018 the <b>Burger King × DAVID</b> partnership won it outright with 75 points — a rare honor for the agency–client relationship itself.</p></div>
+    <div class="lcard"><div class="lstat">19</div><h3>Nineteen Golds, two eras</h3><p>The Golds cluster in the DAVID years (Google Home, Manboobs) but GUT keeps scoring them — Vanguards of Photography, Save It See It and Real Tone all landed Gold. The gold-standard idea survived the agency move.</p></div>
+    <div class="lcard"><div class="lstat">↗</div><h3>The idea travels — three festivals</h3><p><b>Real Tone</b> is the proof: a Cannes <b>Mobile Grand Prix</b>, a D&amp;AD <b style="color:#fff">Black Pencil</b>, and a One Show <b style="color:#f4dd7e">Best of Discipline</b> — the top honor at all three. Google Home of the Whopper did the same: Direct GP, nine D&amp;AD Pencils, One Show Best of Discipline + 10 Golds. Strong ideas don't depend on one jury — or one festival.</p></div>
+    <div class="lcard"><div class="lstat">BK</div><h3>Burger King, the through-line engine</h3><p>As at Cannes and D&amp;AD, the bulk of the One Show haul traces to the Burger King partnership of the DAVID years — the relationship that minted the records across every show.</p></div>
+  </div>
+  <div class="thesis">
+    <div class="lab">The throughline</div>
+    <p>The One Show is where a single idea reached its <b>highest concentration of honors</b> — Google Home of the Whopper's <b>Best of Discipline + 10 Golds</b>. Across three festivals the verdict is the same: a handful of ideas, <b>big enough to sweep</b>, judged great by every jury that saw them. 46 One Show Pencils — a Penta, two Best of Discipline, nineteen Golds — one more proof it's the <b>idea</b> that travels.</p>
+  </div>
+</div></section>
+</div><!-- /view-oneshow -->
+
+<!-- ALL AWARDS (CONSOLIDATED) -->
+<div id="view-all" class="view" hidden>
+<div class="subnav"><div class="wrap">
+  <a href="#a-story">The Story</a>
+  <a href="#a-fest">By Festival</a>
+  <a href="#a-tier">Unified Tiers</a>
+  <a href="#a-crown">Triple Crown</a>
+  <a href="#a-work">Every Idea</a>
+  <a href="#a-year">By Year</a>
+  <a href="#a-learn">Conclusions</a>
+</div></div>
+
+<header><div class="wrap">
+  <div class="eyebrow">Casal Peña · The Complete Record</div>
+  <h1>All Awards</h1>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — every trophy across Cannes Lions, D&amp;AD and The One Show, unified.</p>
+  <div class="bignum">
+    <div class="n" id="a-total">—</div>
+    <div class="lab"><b>trophies across three festivals.</b> <span id="a-grandline">—</span></div>
+  </div>
+  <div class="bd-line" id="aBreakdown"></div>
+</div></header>
+
+<section id="a-story"><div class="wrap">
+  <h2>One body of work, three juries</h2>
+  <div class="story">
+    <p>Three of advertising's most respected festivals — <span class="hl">Cannes Lions</span>, <span class="hl">D&amp;AD</span> and <span class="hl">The One Show</span> — each with its own jury, its own crafts, its own currency of pencils and lions. Put side by side, the same ideas keep winning at all three.</p>
+    <p>To compare them fairly, every award is mapped onto one ladder: <span class="hl">Grand</span> (a Grand Prix, a Black Pencil, a Penta or Best of Discipline), then <span class="hl">Gold</span>, <span class="hl">Silver</span> and <span class="hl">Bronze</span> tiers — plus D&amp;AD's <span class="hl">White Pencil</span> for social good. The result is the full picture of what this partnership has actually won.</p>
+  </div>
+</div></section>
+
+<section id="a-fest"><div class="wrap">
+  <h2>By festival</h2>
+  <div class="festrow" id="aFestRow"></div>
+  <p class="note">Tap a festival to open its tab. Cannes shows the full personal-tracker total of <b>96</b> — 85 individually documented plus <b>11 uncredited</b> Lions (won but not credited on the platform, so they can't be itemized by idea or tier; they're listed as their own line in the table and ladder).</p>
+</div></section>
+
+<section id="a-tier"><div class="wrap">
+  <h2>The unified ladder — every award on one scale</h2>
+  <div class="uni-grid" id="aUni"></div>
+  <p class="note">How each festival's hierarchy maps onto a single five-rung scale, so wins from different shows can be counted and compared together.</p>
+</div></section>
+
+<section id="a-crown"><div class="wrap">
+  <h2>The Triple Crown — ideas that won at all three — tap to watch</h2>
+  <div class="gpgrid" id="aCrownCards"></div>
+</div></section>
+
+<section id="a-work"><div class="wrap">
+  <h2>Every idea — tap any row to watch it</h2>
+  <div style="overflow-x:auto">
+  <table id="atbl">
+    <thead><tr>
+      <th data-ak="year">Year</th>
+      <th data-ak="title">Idea</th>
+      <th data-ak="brand">Brand</th>
+      <th data-ak="ct" style="text-align:center">Cannes</th>
+      <th data-ak="dt" style="text-align:center">D&amp;AD</th>
+      <th data-ak="ot" style="text-align:center">One Show</th>
+      <th data-ak="total" style="text-align:center">Total</th>
+      <th data-ak="fest" style="text-align:center">Reach</th>
+    </tr></thead>
+    <tbody id="aRows"></tbody>
+    <tfoot><tr class="totrow">
+      <td colspan="3">Total trophies</td>
+      <td style="text-align:center" id="at-c"></td>
+      <td style="text-align:center" id="at-d"></td>
+      <td style="text-align:center" id="at-o"></td>
+      <td style="text-align:center" id="at-t"></td>
+      <td></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p class="count-line"><b id="aCount"></b> ideas · won across the three festivals · tap a row to watch the case film</p>
+</div></section>
+
+<section id="a-year"><div class="wrap">
+  <h2>Trophies by year — all festivals</h2>
+  <div class="chartwrap" id="aYearChart"></div>
+  <div class="legend">
+    <span><span class="dot d-g"></span>Cannes</span>
+    <span><span class="dot d-yellow"></span>D&amp;AD</span>
+    <span><span class="dot d-bod"></span>One Show</span>
+  </div>
+  <p class="note"><b style="color:var(--gold)">Hover any year</b> for the festival split. 2016–2018 is the supernova; the awards keep landing across all three shows through 2026.</p>
+</div></section>
+
+<section id="a-learn"><div class="wrap">
+  <h2>Conclusions &amp; Learnings</h2>
+  <p class="lead">What the complete, cross-festival record reveals once all three shows are counted as one.</p>
+  <div class="lgrid" id="aLearn"></div>
+  <div class="thesis">
+    <div class="lab">The throughline</div>
+    <p id="aThesis">—</p>
+  </div>
+</div></section>
+</div><!-- /view-all -->
+
+<footer><div class="wrap">
+  CASAL PEÑA · Ricardo Casal &amp; Juan Javier Peña Plaza · Cannes Lions · D&amp;AD · The One Show — creative partnership, 2016–present.
+</div></footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <span class="x" id="mX">&times;</span>
+    <div class="disc" id="mDisc"></div>
+    <h3 id="mTitle"></h3>
+    <div class="meta" id="mMeta"></div>
+    <div class="gallery" id="mGallery">
+      <div class="media" id="mMedia"></div>
+      <button class="navbtn prev" id="mPrev" aria-label="Previous">‹</button>
+      <button class="navbtn next" id="mNext" aria-label="Next">›</button>
+      <div class="gbar">
+        <span class="counter" id="mCounter"></span>
+        <button class="fullbtn" id="mFull">⛶ Fullscreen</button>
+      </div>
+    </div>
+    <div class="splits" id="mSplits"></div>
+    <div class="credit" id="mCredit">Ricardo Casal &amp; Juan Javier Peña Plaza</div>
+    <a class="btn primary" id="mWatch" target="_blank" rel="noopener">▶ &nbsp;Search the case film</a>
+    <a class="btn ghost" id="mWork" target="_blank" rel="noopener">Case study on The Work ↗</a>
+  </div>
+</div>
+
+<script>
+const CP="CP/";
+const C = [
+  {year:2016,title:"Manboobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",gp:1,g:10,s:2,b:1,disc:"Grand Prix for Good",slug:"manboobs-37887",media:[
+    {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Case Film from The Work - 37887-2332924).mp4"},
+    {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Supporting Content from The Work - 37887-2121455).mp4"}]},
+  {year:2016,title:"Whopper Sign",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:2,slug:"whopper-sign-38499",media:[
+    {t:"video",f:"Whopper Sign/BURGER KING - WHOPPER SIGN - DAVID - Cannes Lions 2016 (Case Film from The Work - 38499-2341117).mp4"},
+    {t:"video",f:"Whopper Sign/BURGER KING - WHOPPER SIGN - DAVID - Cannes Lions 2016 (Film from The Work - 38499-2210826).mp4"},
+    {t:"image",f:"Whopper Sign/BURGER KING - WHOPPER SIGN - DAVID - Cannes Lions 2016 (Digital Proof JPG from The Work - 38499-2294757).jpg"}]},
+  {year:2016,title:"Wiener Stampede",brand:"Heinz",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:2,slug:"wiener-stampede-31066",media:[
+    {t:"video",f:"Wiener Stampede/HEINZ - WIENER STAMPEDE - DAVID - Cannes Lions 2016 (Case Film from The Work - 40260-2164578).mp4"},
+    {t:"video",f:"Wiener Stampede/KRAFT - Wiener Stampede - DAVID - Cannes Lions 2017 (Film from The Work - 31066-2157818).mp4"}]},
+  {year:2016,title:"Whopper Sign – I Want You",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
+    {t:"image",f:"Whopper Sign/BURGER KING - WHOPPER SIGN - I WANT YOU - DAVID - Cannes Lions 2016 (Digital Proof JPG from The Work - 42025-2077082).jpg"}]},
+  {year:2017,title:"Google Home of the Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",gp:1,g:2,s:5,b:6,disc:"Direct Grand Prix",slug:"google-home-of-the-whopper-27641",media:[
+    {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"}]},
+  {year:2017,title:"Scariest BK",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:5,slug:"scariest-bk-30973",media:[
+    {t:"video",f:"Scariest BK/BURGER KING - Scariest BK - DAVID - Cannes Lions 2017 (Case Film from The Work - 30973-2247186).mp4"}]},
+  {year:2017,title:"Pass the Heinz",brand:"Heinz",agency:"DAVID",office:"Miami",gp:0,g:2,s:1,b:1,slug:"pass-the-heinz-27620",media:[
+    {t:"video",f:"Pass the Heinz/HEINZ - PASS THE HEINZ - DAVID - Cannes Lions 2018 (Case Film from The Work - 417023-2287537).mp4"},
+    {t:"image",f:"Pass the Heinz/HEINZ - Pass the Heinz - DAVID - Cannes Lions 2017 (Digital Proof JPG from The Work - 27620-2290675).jpg"},
+    {t:"image",f:"Pass the Heinz/HEINZ - Pass the Heinz - DAVID - Cannes Lions 2017 (Digital Proof JPG from The Work - 27620-2374094).jpg"},
+    {t:"image",f:"Pass the Heinz/HEINZ - Pass the Heinz - DAVID - Cannes Lions 2017 (Digital Proof JPG from The Work - 27620-2377528).jpg"}]},
+  {year:2017,title:"Manboobs4Boobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",gp:0,g:1,s:0,b:0,slug:"manboobs4boobs-28875",media:[
+    {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Case Film from The Work - 37887-2332924).mp4"}]},
+  {year:2018,title:"McMansions",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:2,b:1,slug:"mcmansions-394147",media:[
+    {t:"image",f:"McMansions/BURGER KING - MCMANSIONS - DAVID - Cannes Lions 2018 (Digital Proof JPG from The Work - 394147-5115724).jpg"},
+    {t:"image",f:"McMansions/BURGER KING - MCMANSIONS - DAVID - Cannes Lions 2018 (Supporting Images from The Work - 394147-5106879).jpg"},
+    {t:"image",f:"McMansions/BURGER KING - MCMANSIONS - DAVID - Cannes Lions 2018 (Supporting Images from The Work - 394147-5107165).jpg"}]},
+  {year:2018,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:1,media:[
+    {t:"video",f:"Whopper Neutrality/BURGER KING - Whopper Neutrality - DAVID - Cannes Lions 2019 (Case Film from The Work - 606106-5077168).mp4"}]},
+  {year:2018,title:"Turning Beer Into Water",brand:"Anheuser-Busch",agency:"FleishmanHillard",office:"New York",gp:0,g:1,s:0,b:1,media:[
+    {t:"video",f:"Turning Beer into Water/ANHEUSER-BUSCH - Turning Beer Into Water - FLEISHMAN HILLARD  - Cannes Lions 2018 (Case Film from The Work - 416723-5051775).mp4"}]},
+  {year:2018,title:"A Little Help From a Bud",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:0,media:[
+    {t:"video",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Case Film from The Work - 399027-5098259).mp4"},
+    {t:"image",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Supporting Content from The Work - 399027-5077166).jpg"},
+    {t:"image",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Supporting Images from The Work - 399027-5082519).jpg"}]},
+  {year:2018,title:"Google Home of the Whopper (re-entry)",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:1,s:0,b:0,slug:"google-home-of-the-whopper-416999",media:[
+    {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"}]},
+  {year:2018,title:"Broiler Salesman",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
+    {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5019267).mp3"},
+    {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5043015).mp3"},
+    {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5043016).mp3"}]},
+  {year:2018,title:"Stand By You",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
+    {t:"video",f:"Turning Beer into Water/AB-Inbev - STAND BY YOU  - DAVID - Cannes Lions 2018 (Case Film from The Work - 392203-5088924).mp4"},
+    {t:"video",f:"Turning Beer into Water/AB-Inbev - STAND BY YOU  - DAVID - Cannes Lions 2018 (Film from The Work - 392203-5088778).mp4"}]},
+  {year:2018,title:"Emoji Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
+    {t:"video",f:"Emoji Whopper/BURGER KING - EMOJI WHOPPER - DAVID - Cannes Lions 2018 (Case Film from The Work - 417117-5084214).mp4"}]},
+  {year:2019,title:"BK BOT",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:2,s:1,b:2,slug:"bk-bot-583676",media:[
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Case Film from The Work - 583676-5976245).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Film from The Work - 583676-5966136).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Film from The Work - 583676-5966288).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Film from The Work - 583676-5966465).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Film from The Work - 583676-5966490).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Film from The Work - 583676-6037401).mp4"}]},
+  {year:2019,title:"Try Not To Hear This",brand:"Coca-Cola",agency:"DAVID",office:"Miami",gp:0,g:1,s:0,b:1,media:[
+    {t:"video",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Demo Film from The Work - 582266-5976820).mp4"},
+    {t:"image",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Supporting Images from The Work - 582266-5976821).jpg"},
+    {t:"image",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Supporting Images from The Work - 582266-5976823).jpg"},
+    {t:"image",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Supporting Images from The Work - 582266-5976826).jpg"}]},
+  {year:2019,title:"Eat Like Andy",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:1,media:[
+    {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Case Film from The Work - 582330-5979633).mp4"},
+    {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Case Film from The Work - 582330-5979813).mp4"},
+    {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Film from The Work - 582330-5966611).mp4"},
+    {t:"image",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Digital Proof JPG from The Work - 582330-5970381).jpg"}]},
+  {year:2019,title:"Wind Never Felt Better",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:1,s:0,b:0,media:[
+    {t:"video",f:"Wind Never Felt Better/ABINBEV - Wind Never Felt Better - DAVID - Cannes Lions 2019 (Case Film from The Work - 582824-6009467).mp4"},
+    {t:"video",f:"Wind Never Felt Better/ABINBEV - Wind Never Felt Better - DAVID - Cannes Lions 2019 (Film from The Work - 582824-6013321).mp4"}]},
+  {year:2020,title:"That Look from Popeyes",brand:"Popeyes",agency:"GUT",office:"Miami",gp:0,g:1,s:1,b:1,slug:"that-look-from-popeyes-705024",media:[
+    {t:"video",f:"That Look from Popeyes/POPEYES LOUISIANA KITCHEN, INC - That Look from Popeyes - GUT - Cannes Lions 2020 (Case Film from The Work - 705024-17193682).mp4"}]},
+  {year:2022,title:"Michelob – Save It See It",brand:"Michelob Ultra",agency:"GUT",office:"Miami",gp:0,g:0,s:1,b:1,media:[
+    {t:"video",f:"Save it See it/ANHEUSER-BUSCH - MICHELOB ULTRA - Save it See It - GUT - Cannes Lions 2023 (Video from The Work - 1541646-19376635).mp4"}]},
+  {year:2022,title:"Popeyes – 12 Hour Marination",brand:"Popeyes",agency:"GUT",office:"Miami",gp:0,g:0,s:0,b:1,slug:"popeyes-12-hour-marination-773149",media:[
+    {t:"image",f:"12 Hour Marination/POPEYES LOUISIANA KITCHEN  - Popeyes - 12 Hour Marination - GUT - Cannes Lions 2022 (Digital Proof JPG from The Work - 773149-19372329).jpg"},
+    {t:"image",f:"12 Hour Marination/POPEYES LOUISIANA KITCHEN  - Popeyes - 12 Hour Marination - GUT - Cannes Lions 2022 (Digital Proof JPG from The Work - 773149-19372369).jpg"},
+    {t:"image",f:"12 Hour Marination/POPEYES LOUISIANA KITCHEN  - Popeyes - 12 Hour Marination - GUT - Cannes Lions 2022 (Digital Proof JPG from The Work - 773149-19372393).jpg"}]},
+  {year:2022,title:"Tim Hortons – Timbiebs",brand:"Tim Hortons",agency:"GUT",office:"Toronto",gp:0,g:0,s:0,b:1,media:[
+    {t:"video",f:"Timbiebs/TIM HORTONS - Timbiebs - GUT - Cannes Lions 2023 (Case Film from The Work - 1541569-19370488).mp4"}]},
+  {year:2022,title:"Google – Real Tone",brand:"Google",agency:"GUT",office:"Miami",gp:0,g:0,s:0,b:1,slug:"google-real-tone-767193",media:[
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE  - Google - Real Tone - GUT - Cannes Lions 2022 (Case Film from The Work - 767193-19394400).mp4"}]},
+  {year:2022,title:"Real Tone — Product Innovation & Global",brand:"Google",agency:"Google",office:"Mountain View",gp:1,g:0,s:0,b:1,disc:"Mobile Grand Prix",slug:"real-tone-product-innovation-global-campaign-758021",media:[
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE  - Google - Real Tone - GUT - Cannes Lions 2022 (Case Film from The Work - 767193-19394400).mp4"},
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE - Pixel - Lizzo in Real Tone.mp4"}]},
+  {year:2023,title:"Bagel Tax",brand:"Philadelphia",agency:"GUT",office:"Miami",gp:0,g:0,s:2,b:1,slug:"bagel-tax-1533293",media:[
+    {t:"video",f:"Bagel Tax/PHILADELPHIA CREAM CHEESE - Bagel Tax - GUT - Cannes Lions 2023 (Case Film from The Work - 1533293-22453972).mp4"}]},
+  {year:2023,title:"Real Tone",brand:"Google",agency:"GUT",office:"Miami",gp:0,g:0,s:0,b:1,slug:"real-tone-1541642",media:[
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE - Pixel - Lizzo in Real Tone.mp4"}]},
+  {year:2024,title:"Mayo Haters",brand:"NotCo",agency:"GUT",office:"Miami",gp:0,g:1,s:0,b:0,media:[
+    {t:"video",f:"MayoHaters/NotCo_MayoHatersCS_Whatsapp_720pm.mp4"}]},
+  {year:2024,title:"World's Most Famous Hand Model",brand:"Stella Artois",agency:"GUT",office:"Miami",gp:0,g:1,s:0,b:0,media:[
+    {t:"video",f:"Most Beautiful Hands/Case_Stella-Beckham_Final.mp4"},
+    {t:"image",f:"Most Beautiful Hands/TimesSquare_StellaArtois_GUT_TheWorldsMostFamousHandModel.jpg"},
+    {t:"image",f:"Most Beautiful Hands/Stella-NYT-0328-Chalice@3x-100.jpg"},
+    {t:"image",f:"Most Beautiful Hands/Stella-AMNY-0404-SixPack@3x-100.jpg"},
+    {t:"image",f:"Most Beautiful Hands/Stella-NYDN-0402-Can-02@3x-100.jpg"},
+    {t:"image",f:"Most Beautiful Hands/Stella_Chalice_Newspaper.jpg"},
+    {t:"image",f:"Most Beautiful Hands/Stella_SixPack_Newspaper.jpg"},
+    {t:"image",f:"Most Beautiful Hands/NYCD00126OP2.jpg"},
+    {t:"image",f:"Most Beautiful Hands/NYCD00127.jpg"}]},
+  {year:2024,title:"NotTurtle",brand:"NotCo",agency:"GUT",office:"Miami",gp:0,g:0,s:0,b:2,slug:"notturtle-1628049",media:[
+    {t:"video",f:"NotTurtle/NotCo_NotTurtle_CS_AnuloMufa.mp4"},
+    {t:"video",f:"NotTurtle/NotCo_NotTurtle_Documental_NotMufa.mp4"}]},
+  {year:2025,title:"Six Back",brand:"Victoria",agency:"GUT",office:"Mexico City",gp:0,g:0,s:0,b:1,slug:"six-back-1834591",media:[
+    {t:"video",f:"Six Back/VICTORIA - Six Back - GUT - Cannes Lions 2025 (Case Film from The Work - 1834591-29770675).mp4"}]},
+  {year:2025,title:"The Last Timbit",brand:"Tim Hortons",agency:"GUT",office:"Toronto",gp:0,g:0,s:0,b:1,slug:"the-last-timbit-1836326",credit:"Juan Javier Peña Plaza",media:[
+    {t:"video",f:"The Last Timbit/TLT CASE STUDY_HERO EDIT_FINAL.mp4"}]},
+];
+C.forEach((c,i)=>{c.total=c.gp+c.g+c.s+c.b;c.idx=i;});
+
+const $=s=>document.querySelector(s);
+const rowsEl=$("#rows");
+let sortK="year", sortDir=1, metals=new Set(), q="", fAg="", fYr="";
+
+[...new Set(C.map(c=>c.agency))].forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;$("#fAgency").appendChild(o);});
+[...new Set(C.map(c=>c.year))].sort().forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y;$("#fYear").appendChild(o);});
+
+function ytURL(c){return "https://www.youtube.com/results?search_query="+encodeURIComponent(c.title.replace(/\(.*?\)/g,'').trim()+" "+c.brand+" case study");}
+function workURL(c){return c.slug?("https://www.lovethework.com/en/work/campaigns/"+c.slug):null;}
+function metalCell(n,cls){return n>0?`<span class="m ${cls}">${n}</span>`:`<span class="m z">·</span>`;}
+
+function filtered(){
+  return C.filter(c=>{
+    if(q && !(c.title.toLowerCase().includes(q)||c.brand.toLowerCase().includes(q))) return false;
+    if(fAg && c.agency!==fAg) return false;
+    if(fYr && c.year!=fYr) return false;
+    if(metals.size){let ok=false;metals.forEach(m=>{if(c[m]>0)ok=true;});if(!ok)return false;}
+    return true;
+  });
+}
+function render(){
+  let data=filtered().slice().sort((a,b)=>{
+    let va=a[sortK], vb=b[sortK];
+    if(typeof va==="string"){va=va.toLowerCase();vb=vb.toLowerCase();}
+    return (va<vb?-1:va>vb?1:0)*sortDir;
+  });
+  rowsEl.innerHTML=data.map(c=>`<tr data-idx="${c.idx}">
+    <td>${c.year}</td>
+    <td class="title"><span class="play">▶</span>${c.title}</td>
+    <td class="ag">${c.brand}</td>
+    <td class="ag">${c.agency}, ${c.office}</td>
+    <td style="text-align:center">${metalCell(c.gp,'gp')}</td>
+    <td style="text-align:center">${metalCell(c.g,'g')}</td>
+    <td style="text-align:center">${metalCell(c.s,'s')}</td>
+    <td style="text-align:center">${metalCell(c.b,'b')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+  </tr>`).join("");
+  $("#cCount").textContent=data.length;
+  const cs=k=>data.reduce((a,c)=>a+(c[k]||0),0);
+  $("#ct-gp").innerHTML=`<span class="m gp">${cs('gp')}</span>`;
+  $("#ct-g").innerHTML=`<span class="m g">${cs('g')}</span>`;
+  $("#ct-s").innerHTML=`<span class="m s">${cs('s')}</span>`;
+  $("#ct-b").innerHTML=`<span class="m b">${cs('b')}</span>`;
+  $("#ct-t").textContent=cs('total');
+}
+
+// modal
+function openModal(c){
+  $("#mDisc").textContent=c.disc||(c.agency+", "+c.office+" · "+c.year);
+  $("#mTitle").textContent=c.title.replace(/\(.*?\)/g,'').trim();
+  $("#mMeta").textContent=c.brand+" · "+c.agency+", "+c.office+" · "+c.year;
+  const chips=[];
+  if(c.gp)chips.push(`<span class="m gp">${c.gp} Grand Prix</span>`);
+  if(c.g)chips.push(`<span class="m g">${c.g} Gold</span>`);
+  if(c.s)chips.push(`<span class="m s">${c.s} Silver</span>`);
+  if(c.b)chips.push(`<span class="m b">${c.b} Bronze</span>`);
+  if(c.black)chips.push(`<span class="m black">${c.black} Black Pencil</span>`);
+  if(c.white)chips.push(`<span class="m white">${c.white} White Pencil</span>`);
+  if(c.yellow)chips.push(`<span class="m yellow">${c.yellow} Yellow Pencil</span>`);
+  if(c.graphite)chips.push(`<span class="m graphite">${c.graphite} Graphite Pencil</span>`);
+  if(c.wood)chips.push(`<span class="m wood">${c.wood} Wood Pencil</span>`);
+  if(c.penta)chips.push(`<span class="m penta">★ ${c.penta} Penta Pencil</span>`);
+  if(c.bod)chips.push(`<span class="m bod">★ ${c.bod} Best of Discipline</span>`);
+  if(c.gold)chips.push(`<span class="m g">${c.gold} Gold Pencil</span>`);
+  if(c.silver)chips.push(`<span class="m s">${c.silver} Silver Pencil</span>`);
+  if(c.bronze)chips.push(`<span class="m b">${c.bronze} Bronze Pencil</span>`);
+  $("#mSplits").innerHTML=chips.join(" ");
+  $("#mCredit").textContent=c.credit||"Ricardo Casal & Juan Javier Peña Plaza";
+  // gallery of all local CP files for this idea
+  gallery = Array.isArray(c.media) ? c.media : (c.media ? [c.media] : []);
+  gIdx = 0;
+  const hasLocal = gallery.length>0;
+  $("#mGallery").style.display = hasLocal ? "block" : "none";
+  $("#mGallery").classList.toggle("multi", gallery.length>1);
+  if(hasLocal) renderMedia();
+  // YouTube button only as fallback when no local film
+  if(hasLocal){$("#mWatch").style.display="none";}
+  else{$("#mWatch").style.display="block";$("#mWatch").href=ytURL(c);}
+  const w=workURL(c);
+  if(w){$("#mWork").href=w;$("#mWork").style.display="block";}else{$("#mWork").style.display="none";}
+  $("#overlay").classList.add("show");
+}
+let gallery=[], gIdx=0;
+function renderMedia(){
+  const it=gallery[gIdx]; const src=CP+encodeURI(it.f); let mh="";
+  if(it.t==="video") mh=`<video controls autoplay playsinline preload="metadata" src="${src}"></video>`;
+  else if(it.t==="audio") mh=`<div class="audio"><div class="lab">Radio · audio case ${gallery.length>1?("· "+(gIdx+1)+" of "+gallery.length):""}</div><audio controls autoplay src="${src}"></audio></div>`;
+  else mh=`<img src="${src}" alt="" />`;
+  $("#mMedia").innerHTML=mh;
+  $("#mCounter").textContent=(gIdx+1)+" / "+gallery.length;
+}
+function navMedia(d){ if(!gallery.length)return; gIdx=(gIdx+d+gallery.length)%gallery.length; renderMedia(); }
+function goFull(){
+  const el=$("#mMedia"); const v=el.querySelector("video");
+  if(el.requestFullscreen) el.requestFullscreen();
+  else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  else if(v && v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+}
+function closeModal(){$("#overlay").classList.remove("show");$("#mMedia").innerHTML="";gallery=[];}
+rowsEl.addEventListener("click",e=>{const tr=e.target.closest("tr");if(tr)openModal(C[+tr.dataset.idx]);});
+$("#mX").addEventListener("click",closeModal);
+$("#mPrev").addEventListener("click",()=>navMedia(-1));
+$("#mNext").addEventListener("click",()=>navMedia(1));
+$("#mFull").addEventListener("click",goFull);
+$("#overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal();});
+document.addEventListener("keydown",e=>{
+  if(!$("#overlay").classList.contains("show"))return;
+  if(e.key==="Escape")closeModal();
+  else if(e.key==="ArrowLeft")navMedia(-1);
+  else if(e.key==="ArrowRight")navMedia(1);
+});
+
+// controls
+$("#q").addEventListener("input",e=>{q=e.target.value.toLowerCase();render();});
+$("#fAgency").addEventListener("change",e=>{fAg=e.target.value;render();});
+$("#fYear").addEventListener("change",e=>{fYr=e.target.value;render();});
+document.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
+  const m=ch.dataset.metal; ch.classList.toggle("on");
+  if(metals.has(m))metals.delete(m);else metals.add(m); render();
+}));
+document.querySelectorAll("#tbl th").forEach(th=>th.addEventListener("click",()=>{
+  const k=th.dataset.k; if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=1;} render();
+}));
+
+// GP cards
+function buildGP(){
+  const gps=C.filter(c=>c.gp>0).sort((a,b)=>a.year-b.year);
+  $("#gpCards").innerHTML=gps.map(c=>`<div class="gpcard" data-idx="${c.idx}">
+    <div class="disc">${c.disc.replace(' Grand Prix','').replace('Grand Prix for ','')} · ${c.year}</div>
+    <h3>${c.title.replace(/\(.*?\)/g,'').trim()}</h3>
+    <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
+    <div class="split">${c.disc}${c.g?` · +${c.g} Gold`:''}${c.s?` · ${c.s} Silver`:''}${c.b?` · ${c.b} Bronze`:''}</div>
+    <div class="watch">▶ Watch the film</div>
+  </div>`).join("");
+  document.querySelectorAll("#gpCards .gpcard").forEach(el=>el.addEventListener("click",()=>openModal(C[+el.dataset.idx])));
+}
+
+// ---- interactive line charts ----
+function aggYears(){
+  const YEARS=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  return YEARS.map(y=>{const rows=C.filter(c=>c.year===y);const s=k=>rows.reduce((a,c)=>a+c[k],0);
+    return {label:''+y,total:s('total'),gp:s('gp'),g:s('g'),s:s('s'),b:s('b'),items:rows.map(c=>c.title)};});
+}
+function aggBrands(){
+  const m={};
+  C.forEach(c=>{m[c.brand]=m[c.brand]||{gp:0,g:0,s:0,b:0,total:0,items:[]};['gp','g','s','b','total'].forEach(k=>m[c.brand][k]+=c[k]);m[c.brand].items.push(c.title);});
+  return Object.entries(m).sort((a,b)=>b[1].total-a[1].total).map(([label,v])=>Object.assign({label},v));
+}
+function tipHTML(d){
+  if(d.cfest!==undefined){
+    const bd=[];
+    if(d.cfest)bd.push(`<span class="m g">${d.cfest} Cannes</span>`);
+    if(d.dfest)bd.push(`<span class="m yellow">${d.dfest} D&AD</span>`);
+    if(d.ofest)bd.push(`<span class="m bod">${d.ofest} One Show</span>`);
+    if(d.total===0) return `<div class="t-hd">${d.label}</div><div class="t-tot">0 trophies</div>`;
+    return `<div class="t-hd">${d.label}</div><div class="t-tot">${d.total} ${d.total>1?'trophies':'trophy'}</div><div class="t-bd">${bd.join(' ')}</div>`;
+  }
+  const pen=('yellow'in d)||('graphite'in d)||('wood'in d);
+  const os=('penta'in d)||('bod'in d);
+  const unit=os?'Pencil':pen?'Pencil':'Lion';
+  if(d.total===0) return `<div class="t-hd">${d.label}</div><div class="t-tot">0 ${unit}s</div><div class="t-items">${os?'No One Show wins this year':pen?'No D&AD wins this year':'Cannes paused — Covid'}</div>`;
+  const bd=[];
+  if(d.gp)bd.push(`<span class="m gp">${d.gp} GP</span>`);
+  if(d.g)bd.push(`<span class="m g">${d.g} Gold</span>`);
+  if(d.s)bd.push(`<span class="m s">${d.s} Silver</span>`);
+  if(d.b)bd.push(`<span class="m b">${d.b} Bronze</span>`);
+  if(d.penta)bd.push(`<span class="m penta">★ ${d.penta} Penta</span>`);
+  if(d.bod)bd.push(`<span class="m bod">★ ${d.bod} Best of Disc.</span>`);
+  if(d.gold)bd.push(`<span class="m g">${d.gold} Gold</span>`);
+  if(d.silver)bd.push(`<span class="m s">${d.silver} Silver</span>`);
+  if(d.bronze)bd.push(`<span class="m b">${d.bronze} Bronze</span>`);
+  if(d.black)bd.push(`<span class="m black">${d.black} Black</span>`);
+  if(d.white)bd.push(`<span class="m white">${d.white} White</span>`);
+  if(d.yellow)bd.push(`<span class="m yellow">${d.yellow} Yellow</span>`);
+  if(d.graphite)bd.push(`<span class="m graphite">${d.graphite} Graphite</span>`);
+  if(d.wood)bd.push(`<span class="m wood">${d.wood} Wood</span>`);
+  const items=d.items.slice(0,8).join(' · ')+(d.items.length>8?' …':'');
+  return `<div class="t-hd">${d.label}</div><div class="t-tot">${d.total} ${unit}${d.total>1?'s':''}</div><div class="t-bd">${bd.join(' ')}</div><div class="t-items">${items}</div>`;
+}
+function lineChart(wrapId,data,opts){
+  opts=opts||{};
+  const wrap=document.getElementById(wrapId);
+  const W=Math.max(320,wrap.clientWidth||640), H=opts.h||300;
+  const padL=34,padR=16,padT=18,padB=opts.padB||34;
+  const innerW=W-padL-padR, innerH=H-padT-padB, n=data.length;
+  const max=Math.max(1,...data.map(d=>d.total));
+  const step= max<=6?1: max<=12?2:4;
+  const niceMax=Math.ceil(max/step)*step;
+  const X=i=> padL + (n<=1?innerW/2:innerW*i/(n-1));
+  const Y=v=> padT + innerH*(1-v/niceMax);
+  let grid='';
+  for(let v=0;v<=niceMax;v+=step){const yy=Y(v);grid+=`<line class="cg" x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}"/><text class="cyl" x="${padL-7}" y="${yy+3.5}">${v}</text>`;}
+  let xl='';
+  data.forEach((d,i)=>{
+    if(opts.rot) xl+=`<text class="cxl" x="${X(i)}" y="${H-padB+14}" transform="rotate(-38 ${X(i)} ${H-padB+14})" text-anchor="end">${d.label}</text>`;
+    else xl+=`<text class="cxl" x="${X(i)}" y="${H-padB+19}" text-anchor="middle">${d.label}</text>`;
+  });
+  const area=`M${X(0)},${Y(0)} `+data.map((d,i)=>`L${X(i).toFixed(1)},${Y(d.total).toFixed(1)}`).join(' ')+` L${X(n-1)},${Y(0)} Z`;
+  const line=data.map((d,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(d.total).toFixed(1)}`).join(' ');
+  let dots=''; data.forEach((d,i)=>{dots+=`<circle class="cdot" cx="${X(i)}" cy="${Y(d.total)}" r="3.2"/>`;});
+  wrap.innerHTML=`<svg class="lc" viewBox="0 0 ${W} ${H}">
+    <defs><linearGradient id="g-${wrapId}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(212,175,55,.32)"/><stop offset="1" stop-color="rgba(212,175,55,0)"/></linearGradient></defs>
+    ${grid}<path d="${area}" fill="url(#g-${wrapId})"/><path class="cline" d="${line}"/>${dots}
+    <line class="cguide" x1="0" y1="${padT}" x2="0" y2="${padT+innerH}" style="display:none"/>
+    <circle class="cactive" r="5.2" style="display:none"/>${xl}</svg>
+    <div class="lc-tip" style="display:none"></div>`;
+  const svg=wrap.querySelector('svg'),guide=wrap.querySelector('.cguide'),active=wrap.querySelector('.cactive'),tip=wrap.querySelector('.lc-tip');
+  function show(e){
+    const r=svg.getBoundingClientRect(); const sx=W/r.width;
+    let frac=((e.clientX-r.left)*sx - padL)/innerW; frac=Math.max(0,Math.min(1,frac));
+    const i=Math.round(frac*(n-1)); const d=data[i];
+    guide.setAttribute('x1',X(i));guide.setAttribute('x2',X(i));guide.style.display='';
+    active.setAttribute('cx',X(i));active.setAttribute('cy',Y(d.total));active.style.display='';
+    tip.innerHTML=tipHTML(d); tip.style.display='block';
+    const px=(X(i)/W)*r.width + svg.offsetLeft;
+    const py=(Y(d.total)/H)*r.height + svg.offsetTop;
+    const tw=tip.offsetWidth, ww=wrap.clientWidth;
+    tip.style.left=Math.max(tw/2+4,Math.min(ww-tw/2-4,px))+'px';
+    tip.style.top=(py-12)+'px';
+  }
+  function hide(){guide.style.display='none';active.style.display='none';tip.style.display='none';}
+  svg.addEventListener('mousemove',show);
+  svg.addEventListener('mouseleave',hide);
+  svg.addEventListener('touchstart',e=>{if(e.touches[0])show(e.touches[0]);},{passive:true});
+  svg.addEventListener('touchmove',e=>{if(e.touches[0])show(e.touches[0]);},{passive:true});
+}
+function buildCharts(){ lineChart('yearChart',aggYears(),{rot:false,padB:32,h:300}); lineChart('brandChart',aggBrands(),{rot:true,padB:74,h:320}); }
+
+function showView(v){
+  ['home','cannes','dnad','oneshow','all'].forEach(x=>{document.getElementById('view-'+x).hidden=(x!==v);});
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v===v));
+  window.scrollTo(0,0);
+  if(v==='cannes') buildCharts();
+  if(v==='dnad') dBuild();
+  if(v==='oneshow') oBuild();
+  if(v==='all') aBuild();
+}
+
+/* ===== D&AD ===== */
+const D=[
+  {year:2017,title:"Manboobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",white:1,yellow:1,graphite:3,wood:1,disc:"D&AD 2016–17 · White + Yellow Pencil",media:[
+    {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Case Film from The Work - 37887-2332924).mp4"},
+    {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Supporting Content from The Work - 37887-2121455).mp4"}]},
+  {year:2018,title:"Google Home of the Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",yellow:3,graphite:2,wood:4,disc:"D&AD 2018 · 3 Yellow Pencils",media:[
+    {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"}]},
+  {year:2018,title:"Burger King × DAVID — 4 Years of Collaboration",brand:"Burger King",agency:"DAVID",office:"Miami",yellow:1,disc:"D&AD 2018 · Yellow Pencil (Collaborative)",media:[
+    {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"},
+    {t:"video",f:"Scariest BK/BURGER KING - Scariest BK - DAVID - Cannes Lions 2017 (Case Film from The Work - 30973-2247186).mp4"},
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Case Film from The Work - 583676-5976245).mp4"}]},
+  {year:2018,title:"Pass the Heinz",brand:"Heinz",agency:"DAVID",office:"Miami",graphite:2,media:[
+    {t:"video",f:"Pass the Heinz/HEINZ - PASS THE HEINZ - DAVID - Cannes Lions 2018 (Case Film from The Work - 417023-2287537).mp4"},
+    {t:"image",f:"Pass the Heinz/HEINZ - Pass the Heinz - DAVID - Cannes Lions 2017 (Digital Proof JPG from The Work - 27620-2290675).jpg"}]},
+  {year:2018,title:"StackeRTweet",brand:"Burger King",agency:"DAVID",office:"Miami",wood:1,media:[
+    {t:"video",f:"z. Shortlists/StackeRTweet/BURGER KING - StackeRTweet - DAVID - Cannes Lions 2017 (Case Film from The Work - 28214-2199434).mp4"}]},
+  {year:2019,title:"Eat Like Andy",brand:"Burger King",agency:"DAVID",office:"Miami",graphite:1,wood:2,media:[
+    {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Case Film from The Work - 582330-5979633).mp4"}]},
+  {year:2019,title:"BK BOT",brand:"Burger King",agency:"DAVID",office:"Miami",wood:1,media:[
+    {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Case Film from The Work - 583676-5976245).mp4"}]},
+  {year:2020,title:"Try Not To Hear This",brand:"Coca-Cola",agency:"DAVID",office:"Miami",graphite:1,media:[
+    {t:"video",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Demo Film from The Work - 582266-5976820).mp4"}]},
+  {year:2020,title:"Edchup",brand:"Heinz",agency:"DAVID",office:"Miami",wood:1,media:[
+    {t:"video",f:"z. Shortlists/Edchup/HEINZ - Edchup - DAVID - Cannes Lions 2020 (Case Film from The Work - 707917-17128194).mp4"}]},
+  {year:2021,title:"That Look from Popeyes",brand:"Popeyes",agency:"GUT",office:"Miami",graphite:2,wood:1,media:[
+    {t:"video",f:"That Look from Popeyes/POPEYES LOUISIANA KITCHEN, INC - That Look from Popeyes - GUT - Cannes Lions 2020 (Case Film from The Work - 705024-17193682).mp4"}]},
+  {year:2022,title:"Michelob – Save It See It",brand:"Michelob Ultra",agency:"GUT",office:"Miami",graphite:1,media:[
+    {t:"video",f:"Save it See it/ANHEUSER-BUSCH - MICHELOB ULTRA - Save it See It - GUT - Cannes Lions 2023 (Video from The Work - 1541646-19376635).mp4"}]},
+  {year:2022,title:"Real Tone",brand:"Google",agency:"GUT",office:"Miami",black:1,wood:1,disc:"D&AD 2022 · ★ BLACK PENCIL — the pinnacle",media:[
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE  - Google - Real Tone - GUT - Cannes Lions 2022 (Case Film from The Work - 767193-19394400).mp4"},
+    {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE - Pixel - Lizzo in Real Tone.mp4"}]},
+  {year:2024,title:"Bagel Tax",brand:"Philadelphia",agency:"GUT",office:"Miami",wood:1,disc:'D&AD 2024 · "The Tax Free Bagel"',media:[
+    {t:"video",f:"Bagel Tax/PHILADELPHIA CREAM CHEESE - Bagel Tax - GUT - Cannes Lions 2023 (Case Film from The Work - 1533293-22453972).mp4"}]},
+  {year:2022,title:"Vanguards of Photographers",brand:"Call of Duty",agency:"GUT",office:"Miami",graphite:1,wood:1,disc:"D&AD 2022 · Activision — Call of Duty: Vanguard",media:[
+    {t:"video",f:"z. Shortlists/Vanguards of Photography/ACTIVISION - CALL OF DUTY VANGUARD - Vanguards of Photography - GUT - Cannes Lions 2023 (Case Film from The Work - 1548082-22502491).mp4"}]},
+  {year:2026,title:"Pope Yes",brand:"Popeyes",agency:"GUT",office:"Miami",yellow:1,wood:1,disc:"D&AD 2026 · Popeyes"},
+  {year:2018,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami",graphite:1,media:[
+    {t:"video",f:"Whopper Neutrality/BURGER KING - Whopper Neutrality - DAVID - Cannes Lions 2019 (Case Film from The Work - 606106-5077168).mp4"}]},
+];
+D.forEach((c,i)=>{c.total=(c.black||0)+(c.white||0)+(c.yellow||0)+(c.graphite||0)+(c.wood||0);c.di=i;});
+const drowsEl=document.getElementById('dRows');
+function dRender(){
+  const data=D.slice().sort((a,b)=>a.year-b.year||b.total-a.total);
+  drowsEl.innerHTML=data.map(c=>`<tr data-d="${c.di}">
+    <td>${c.year}</td>
+    <td class="title"><span class="play">▶</span>${c.title}</td>
+    <td class="ag">${c.brand}</td>
+    <td class="ag">${c.agency}, ${c.office}</td>
+    <td style="text-align:center">${metalCell(c.black,'black')}</td>
+    <td style="text-align:center">${metalCell(c.white,'white')}</td>
+    <td style="text-align:center">${metalCell(c.yellow,'yellow')}</td>
+    <td style="text-align:center">${metalCell(c.graphite,'graphite')}</td>
+    <td style="text-align:center">${metalCell(c.wood,'wood')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+  </tr>`).join("");
+  const ds=k=>D.reduce((a,c)=>a+(c[k]||0),0);
+  document.getElementById('dt-black').innerHTML=`<span class="m black">${ds('black')}</span>`;
+  document.getElementById('dt-white').innerHTML=`<span class="m white">${ds('white')}</span>`;
+  document.getElementById('dt-yellow').innerHTML=`<span class="m yellow">${ds('yellow')}</span>`;
+  document.getElementById('dt-graphite').innerHTML=`<span class="m graphite">${ds('graphite')}</span>`;
+  document.getElementById('dt-wood').innerHTML=`<span class="m wood">${ds('wood')}</span>`;
+  document.getElementById('dt-t').textContent=ds('total');
+}
+drowsEl.addEventListener("click",e=>{const tr=e.target.closest("tr");if(tr)openModal(D[+tr.dataset.d]);});
+function dPencilCards(){
+  const tops=D.filter(c=>(c.black||0)+(c.white||0)+(c.yellow||0)>0).sort((a,b)=>(b.black||0)-(a.black||0)||(b.white||0)-(a.white||0)||(b.yellow||0)-(a.yellow||0)||a.year-b.year);
+  const lab=c=>c.black?'★ Black Pencil':c.white?'White Pencil':'Yellow Pencil';
+  const col=c=>c.black?'#fff':c.white?'#f4f1ea':'#f5d400';
+  document.getElementById('dPencilCards').innerHTML=tops.map(c=>`<div class="gpcard" data-d="${c.di}">
+    <div class="disc" style="color:${col(c)}">${lab(c)} · ${c.year}</div>
+    <h3>${c.title}</h3>
+    <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
+    <div class="split">${c.black?`${c.black} Black · `:''}${c.white?`${c.white} White · `:''}${c.yellow?`${c.yellow} Yellow · `:''}${c.graphite?`${c.graphite} Graphite · `:''}${c.wood?`${c.wood} Wood`:''}</div>
+    <div class="watch" style="color:${col(c)}">▶ Watch the film</div>
+  </div>`).join("");
+  document.querySelectorAll('#dPencilCards .gpcard').forEach(el=>el.addEventListener('click',()=>openModal(D[+el.dataset.d])));
+}
+function dAggYears(){const Y=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];return Y.map(y=>{const rows=D.filter(c=>c.year===y);const s=k=>rows.reduce((a,c)=>a+(c[k]||0),0);return {label:''+y,total:s('total'),black:s('black'),white:s('white'),yellow:s('yellow'),graphite:s('graphite'),wood:s('wood'),items:rows.map(c=>c.title)};});}
+function dAggBrands(){const m={};D.forEach(c=>{m[c.brand]=m[c.brand]||{black:0,white:0,yellow:0,graphite:0,wood:0,total:0,items:[]};['black','white','yellow','graphite','wood','total'].forEach(k=>m[c.brand][k]+=(c[k]||0));m[c.brand].items.push(c.title);});return Object.entries(m).sort((a,b)=>b[1].total-a[1].total).map(([label,v])=>Object.assign({label},v));}
+function dCharts(){ lineChart('dYearChart',dAggYears(),{rot:false,padB:32,h:300}); lineChart('dBrandChart',dAggBrands(),{rot:true,padB:74,h:320}); }
+function dBuild(){ dRender(); dPencilCards(); dCharts(); }
+
+/* ===== THE ONE SHOW (Pencils only — Merits & merit-only ideas removed) ===== */
+const O=[
+ {year:2017,title:"Manboobs4Boobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",gold:2,disc:"One Show 2017 · 2 Gold Pencils",media:[
+   {t:"video",f:"1. GPs/1. GP Manboobs/MACMA - Manboobs - DAVID - Cannes Lions 2016 (Case Film from The Work - 37887-2332924).mp4"}]},
+ {year:2017,title:"Whopper Sign",brand:"Burger King",agency:"DAVID",office:"Miami",silver:1,media:[
+   {t:"video",f:"Whopper Sign/BURGER KING - WHOPPER SIGN - DAVID - Cannes Lions 2016 (Case Film from The Work - 38499-2341117).mp4"}]},
+ {year:2017,title:"Scariest BK",brand:"Burger King",agency:"DAVID",office:"Miami",bronze:2,media:[
+   {t:"video",f:"Scariest BK/BURGER KING - Scariest BK - DAVID - Cannes Lions 2017 (Case Film from The Work - 30973-2247186).mp4"}]},
+ {year:2018,title:"Burger King × DAVID — Penta Pencil",brand:"Burger King",agency:"DAVID",office:"Miami",penta:1,disc:"One Show 2018 · ★ PENTA PENCIL — top partnership honor (75 points, the most of the year)",media:[
+   {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"},
+   {t:"video",f:"Scariest BK/BURGER KING - Scariest BK - DAVID - Cannes Lions 2017 (Case Film from The Work - 30973-2247186).mp4"},
+   {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Case Film from The Work - 583676-5976245).mp4"}]},
+ {year:2018,title:"Google Home of the Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",bod:1,gold:10,silver:1,disc:"One Show 2018 · ★ Best of Discipline + 10 Gold",media:[
+   {t:"video",f:"1. GPs/2. GP Google Home of the Whopper/BURGER KING - Google Home of the Whopper - DAVID - Cannes Lions 2017 (Case Film from The Work - 27641-2331400).mp4"}]},
+ {year:2018,title:"Pass the Heinz",brand:"Heinz",agency:"DAVID",office:"Miami",bronze:2,media:[
+   {t:"video",f:"Pass the Heinz/HEINZ - PASS THE HEINZ - DAVID - Cannes Lions 2018 (Case Film from The Work - 417023-2287537).mp4"}]},
+ {year:2019,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami",silver:1,media:[
+   {t:"video",f:"Whopper Neutrality/BURGER KING - Whopper Neutrality - DAVID - Cannes Lions 2019 (Case Film from The Work - 606106-5077168).mp4"}]},
+ {year:2019,title:"BK BOT",brand:"Burger King",agency:"DAVID",office:"Miami",silver:1,media:[
+   {t:"video",f:"BKBot/BURGER KING - BK BOT - DAVID - Cannes Lions 2019 (Case Film from The Work - 583676-5976245).mp4"}]},
+ {year:2020,title:"Try Not To Hear This",brand:"Coca-Cola",agency:"DAVID",office:"Miami",silver:2,bronze:1,media:[
+   {t:"video",f:"Try not to hear this/COCA-COLA - Try Not To Hear This - DAVID - Cannes Lions 2019 (Demo Film from The Work - 582266-5976820).mp4"}]},
+ {year:2021,title:"That Look from Popeyes",brand:"Popeyes",agency:"GUT",office:"Miami",silver:1,bronze:1,media:[
+   {t:"video",f:"That Look from Popeyes/POPEYES LOUISIANA KITCHEN, INC - That Look from Popeyes - GUT - Cannes Lions 2020 (Case Film from The Work - 705024-17193682).mp4"}]},
+ {year:2022,title:"Vanguards of Photography",brand:"Call of Duty",agency:"GUT",office:"Miami",gold:2,bronze:1,media:[
+   {t:"video",f:"z. Shortlists/Vanguards of Photography/ACTIVISION - CALL OF DUTY VANGUARD - Vanguards of Photography - GUT - Cannes Lions 2023 (Case Film from The Work - 1548082-22502491).mp4"}]},
+ {year:2022,title:"Save It See It",brand:"Michelob Ultra",agency:"GUT",office:"Miami",gold:1,silver:2,bronze:2,media:[
+   {t:"video",f:"Save it See it/ANHEUSER-BUSCH - MICHELOB ULTRA - Save it See It - GUT - Cannes Lions 2023 (Video from The Work - 1541646-19376635).mp4"}]},
+ {year:2022,title:"Real Tone",brand:"Google",agency:"GUT",office:"Miami",bod:1,gold:4,silver:1,bronze:1,credit:"Ricardo Casal & Juan Javier Peña Plaza · uncredited (filed under Google's creative team)",disc:"One Show 2022 · ★ Best of Discipline + 4 Gold + 1 CMO Pencil — uncredited",media:[
+   {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE  - Google - Real Tone - GUT - Cannes Lions 2022 (Case Film from The Work - 767193-19394400).mp4"},
+   {t:"video",f:"1. GPs/3. GP Real Tone/GOOGLE - Pixel - Lizzo in Real Tone.mp4"}]},
+ {year:2023,title:"Veteruns 100K",brand:"Call of Duty",agency:"GUT",office:"Los Angeles",silver:1},
+ {year:2025,title:"NotTurtle",brand:"NotCo",agency:"GUT",office:"Miami",bronze:1,media:[
+   {t:"video",f:"NotTurtle/NotCo_NotTurtle_CS_AnuloMufa.mp4"}]},
+ {year:2025,title:"Javier in Frame",brand:"Google",agency:"GUT",office:"Miami",bronze:1},
+ {year:2026,title:"Certified by the Sun",brand:"AB InBev",agency:"GUT",office:"Mexico City",bronze:1},
+];
+O.forEach((c,i)=>{c.total=(c.penta||0)+(c.bod||0)+(c.gold||0)+(c.silver||0)+(c.bronze||0);c.oi=i;});
+const orowsEl=document.getElementById('oRows');
+function oRender(){
+  const data=O.slice().sort((a,b)=>a.year-b.year||b.total-a.total);
+  orowsEl.innerHTML=data.map(c=>`<tr data-o="${c.oi}">
+    <td>${c.year}</td>
+    <td class="title"><span class="play">▶</span>${c.title}</td>
+    <td class="ag">${c.brand}</td>
+    <td class="ag">${c.agency}, ${c.office}</td>
+    <td style="text-align:center">${metalCell(c.penta,'penta')}</td>
+    <td style="text-align:center">${metalCell(c.bod,'bod')}</td>
+    <td style="text-align:center">${metalCell(c.gold,'g')}</td>
+    <td style="text-align:center">${metalCell(c.silver,'s')}</td>
+    <td style="text-align:center">${metalCell(c.bronze,'b')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+  </tr>`).join("");
+  const os=k=>O.reduce((a,c)=>a+(c[k]||0),0);
+  document.getElementById('ot-penta').innerHTML=`<span class="m penta">${os('penta')}</span>`;
+  document.getElementById('ot-bod').innerHTML=`<span class="m bod">${os('bod')}</span>`;
+  document.getElementById('ot-gold').innerHTML=`<span class="m g">${os('gold')}</span>`;
+  document.getElementById('ot-silver').innerHTML=`<span class="m s">${os('silver')}</span>`;
+  document.getElementById('ot-bronze').innerHTML=`<span class="m b">${os('bronze')}</span>`;
+  document.getElementById('ot-t').textContent=os('total');
+}
+orowsEl.addEventListener("click",e=>{const tr=e.target.closest("tr");if(tr)openModal(O[+tr.dataset.o]);});
+function oTopCards(){
+  const tops=O.filter(c=>(c.penta||0)+(c.bod||0)+(c.gold||0)>0).sort((a,b)=>(b.penta||0)-(a.penta||0)||(b.bod||0)-(a.bod||0)||(b.gold||0)-(a.gold||0)||a.year-b.year);
+  const lab=c=>c.penta?'★ Penta Pencil':c.bod?'★ Best of Discipline':'Gold Pencil';
+  const col=c=>c.penta?'#36d6b6':c.bod?'#f4dd7e':'#d4af37';
+  document.getElementById('oTopCards').innerHTML=tops.map(c=>`<div class="gpcard" data-o="${c.oi}">
+    <div class="disc" style="color:${col(c)}">${lab(c)} · ${c.year}</div>
+    <h3>${c.title}</h3>
+    <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
+    <div class="split">${c.penta?`★ ${c.penta} Penta Pencil`:''}${c.bod?`★ ${c.bod} Best of Discipline · `:''}${c.gold?`${c.gold} Gold · `:''}${c.silver?`${c.silver} Silver · `:''}${c.bronze?`${c.bronze} Bronze`:''}</div>
+    <div class="watch" style="color:${col(c)}">▶ Watch the film</div>
+  </div>`).join("");
+  document.querySelectorAll('#oTopCards .gpcard').forEach(el=>el.addEventListener('click',()=>openModal(O[+el.dataset.o])));
+}
+function oAggYears(){const Y=[2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];return Y.map(y=>{const rows=O.filter(c=>c.year===y);const s=k=>rows.reduce((a,c)=>a+(c[k]||0),0);return {label:''+y,total:s('total'),penta:s('penta'),bod:s('bod'),gold:s('gold'),silver:s('silver'),bronze:s('bronze'),items:rows.map(c=>c.title)};});}
+function oAggBrands(){const m={};O.forEach(c=>{m[c.brand]=m[c.brand]||{penta:0,bod:0,gold:0,silver:0,bronze:0,total:0,items:[]};['penta','bod','gold','silver','bronze','total'].forEach(k=>m[c.brand][k]+=(c[k]||0));m[c.brand].items.push(c.title);});return Object.entries(m).sort((a,b)=>b[1].total-a[1].total).map(([label,v])=>Object.assign({label},v));}
+function oCharts(){ lineChart('oYearChart',oAggYears(),{rot:false,padB:32,h:300}); lineChart('oBrandChart',oAggBrands(),{rot:true,padB:74,h:320}); }
+function oBuild(){ oRender(); oTopCards(); oCharts(); }
+
+/* ===== ALL AWARDS (CONSOLIDATED) ===== */
+// map every entry's title to one canonical idea key so the same idea unifies across festivals
+function canonKey(title){
+  let s=title.toLowerCase().replace(/\(.*?\)/g,'').replace(/[#–—×&\-]/g,' ').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+  const R=[['manboobs','Manboobs'],['google home of the whopper','Google Home of the Whopper'],['real tone','Real Tone'],
+   ['save it see it','Save It See It'],['tax free bagel','Bagel Tax'],['bagel','Bagel Tax'],['vanguards of photograph','Vanguards of Photography'],
+   ['whopper sign','Whopper Sign'],['whopper neutrality','Whopper Neutrality'],['pass the heinz','Pass the Heinz'],
+   ['that look','That Look from Popeyes'],['try not to hear','Try Not To Hear This'],['scariest bk','Scariest BK'],
+   ['bk bot','BK BOT'],['eat like andy','Eat Like Andy'],['stackertweet','StackeRTweet'],['pope yes','Pope Yes'],
+   ['edchup','Edchup'],['mcmansions','McMansions'],['last timbit','The Last Timbit'],['timbieb','Timbiebs'],
+   ['wiener stampede','Wiener Stampede'],['notturtle','NotTurtle'],['mayo haters','Mayo Haters'],['hand model','World’s Most Famous Hand Model'],
+   ['six back','Six Back'],['nightmare king','The Nightmare King'],['stand by you','Stand By You'],['emoji whopper','Emoji Whopper'],
+   ['broiler salesman','Broiler Salesman'],['wind never felt better','Wind Never Felt Better'],['turning beer into water','Turning Beer Into Water'],
+   ['little help from a bud','A Little Help From a Bud'],['marination','Popeyes 12-Hour Marination'],['certified by the sun','Certified by the Sun'],
+   ['veteruns','Veteruns'],['javier in frame','Javier in Frame'],['memes to dreams','Memes to Dreams'],
+   ['penta','Burger King × DAVID Partnership'],['collaboration','Burger King × DAVID Partnership'],
+   ['nightmare','The Nightmare King']];
+  for(const [m,c] of R) if(s.includes(m)) return c;
+  return title.replace(/\s*\(.*?\)\s*/g,'').trim();
+}
+let A=[]; // consolidated idea list
+const CANNES_UNCREDITED=11; // Cannes personal tracker 96 − documented 85 = uncredited Lions, not itemizable by idea/tier
+function consolidate(){
+  const M={};
+  function add(fest,arr,tiers){arr.forEach(c=>{const k=canonKey(c.title);
+    if(!M[k])M[k]={title:k,brand:c.brand,agency:c.agency,office:c.office||'',year:c.year||9999,cannes:{},dnad:{},oneshow:{},media:null,credit:null};
+    const r=M[k]; if(!r.media&&c.media)r.media=c.media; if(c.credit&&!r.credit)r.credit=c.credit;
+    if(c.year&&c.year<r.year)r.year=c.year; if(!r.brand)r.brand=c.brand;
+    tiers.forEach(t=>{if(c[t])r[fest][t]=(r[fest][t]||0)+c[t];});});}
+  add('cannes',C,['gp','g','s','b']);
+  add('dnad',D,['black','white','yellow','graphite','wood']);
+  add('oneshow',O,['penta','bod','gold','silver','bronze']);
+  const sum=o=>Object.values(o).reduce((a,b)=>a+b,0);
+  A=Object.values(M).map((r,i)=>{const ct=sum(r.cannes),dt=sum(r.dnad),ot=sum(r.oneshow);
+    const grand=(r.cannes.gp||0)+(r.dnad.black||0)+(r.oneshow.penta||0)+(r.oneshow.bod||0);
+    return Object.assign(r,{ct,dt,ot,total:ct+dt+ot,fest:(ct>0)+(dt>0)+(ot>0),grand,ai:i});});
+  A.push({title:'Uncredited Cannes Lions',brand:'DAVID · GUT',agency:'various',office:'',year:'—',cannes:{},dnad:{},oneshow:{},media:null,
+    ct:CANNES_UNCREDITED,dt:0,ot:0,total:CANNES_UNCREDITED,fest:1,grand:0,uncredited:true,ai:A.length});
+  return A;
+}
+// merged campaign object → reuse the existing modal (it renders chips for every tier)
+function aMerged(idea){return Object.assign({title:idea.title,brand:idea.brand,agency:idea.agency,office:idea.office,year:idea.year,
+  media:idea.media,credit:idea.credit,disc:idea.fest===3?'★ Triple Crown · won at all three festivals':idea.total+' trophies · '+idea.fest+' festival'+(idea.fest>1?'s':'')},
+  idea.cannes,idea.dnad,idea.oneshow);}
+// unified tiers
+function aTiers(){
+  const t={grand:0,gold:0,silver:0,bronze:0,special:0,uncredited:CANNES_UNCREDITED};
+  C.forEach(c=>{t.grand+=c.gp||0;t.gold+=c.g||0;t.silver+=c.s||0;t.bronze+=c.b||0;});
+  D.forEach(c=>{t.grand+=c.black||0;t.special+=c.white||0;t.gold+=c.yellow||0;t.silver+=c.graphite||0;t.bronze+=c.wood||0;});
+  O.forEach(c=>{t.grand+=(c.penta||0)+(c.bod||0);t.gold+=c.gold||0;t.silver+=c.silver||0;t.bronze+=c.bronze||0;});
+  return t;
+}
+function aTotal(t){t=t||aTiers();return t.grand+t.gold+t.silver+t.bronze+t.special+t.uncredited;}
+let aSortK='total',aSortDir=-1;
+function fcell(n,cls){return n>0?`<span class="fcell ${cls}">${n}</span>`:`<span class="fcell z">·</span>`;}
+function aRender(){
+  const data=A.slice().sort((a,b)=>{let va=a[aSortK],vb=b[aSortK];if(typeof va==='string'){va=va.toLowerCase();vb=vb.toLowerCase();}return(va<vb?-1:va>vb?1:0)*aSortDir;});
+  document.getElementById('aRows').innerHTML=data.map(c=>c.uncredited?
+   `<tr data-a="${c.ai}" class="uncred">
+    <td>—</td>
+    <td class="title" style="font-style:italic;color:var(--mute)">${c.title} <span class="um" style="font-style:normal">won but not credited on the platform · tier not itemized</span></td>
+    <td class="ag">${c.brand}</td>
+    <td style="text-align:center">${fcell(c.ct,'')}</td>
+    <td style="text-align:center">${fcell(0,'')}</td>
+    <td style="text-align:center">${fcell(0,'')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+    <td style="text-align:center"><span class="reach"><i class="on"></i><i></i><i></i></span></td>
+  </tr>`:
+   `<tr data-a="${c.ai}" class="${c.fest===3?'crown':''}">
+    <td>${c.year}</td>
+    <td class="title"><span class="play">▶</span>${c.title}${c.grand?' <span style="color:var(--gold)">★</span>':''}</td>
+    <td class="ag">${c.brand}</td>
+    <td style="text-align:center">${fcell(c.ct,'')}</td>
+    <td style="text-align:center">${fcell(c.dt,'')}</td>
+    <td style="text-align:center">${fcell(c.ot,'')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+    <td style="text-align:center"><span class="reach"><i class="${c.ct?'on':''}"></i><i class="${c.dt?'on':''}"></i><i class="${c.ot?'on':''}"></i></span></td>
+  </tr>`).join('');
+  const cs=k=>A.reduce((a,c)=>a+c[k],0);
+  document.getElementById('at-c').innerHTML=`<b>${cs('ct')}</b>`;
+  document.getElementById('at-d').innerHTML=`<b>${cs('dt')}</b>`;
+  document.getElementById('at-o').innerHTML=`<b>${cs('ot')}</b>`;
+  document.getElementById('at-t').innerHTML=`<b>${cs('total')}</b>`;
+  document.getElementById('aCount').textContent=A.filter(c=>!c.uncredited).length;
+}
+function aFestCards(){
+  const cs=(arr,ks)=>arr.reduce((a,c)=>a+ks.reduce((x,k)=>x+(c[k]||0),0),0);
+  const f=[['Cannes Lions','cannes',cs(C,['gp','g','s','b'])+CANNES_UNCREDITED,C.length+' ideas · 3 Grand Prix · incl. 11 uncredited'],
+   ['D&AD','dnad',cs(D,['black','white','yellow','graphite','wood']),D.length+' ideas · 1 Black Pencil'],
+   ['The One Show','oneshow',cs(O,['penta','bod','gold','silver','bronze']),O.length+' winners · 1 Penta + 2 BoD']];
+  document.getElementById('aFestRow').innerHTML=f.map(x=>`<div class="festcard" onclick="showView('${x[1]}')">
+    <div class="fn">${x[2]}</div><div class="fl">${x[0]}</div><div class="fx">${x[3]} →</div></div>`).join('');
+}
+function aUni(){
+  const t=aTiers();
+  const cards=[
+   ['grand',t.grand,'Grand','GP · Black · Penta · Best of Disc.','#e8c75a'],
+   ['gold',t.gold,'Gold tier','Gold · Yellow · Gold','#d4af37'],
+   ['silver',t.silver,'Silver tier','Silver · Graphite · Silver','#c3c7cc'],
+   ['bronze',t.bronze,'Bronze tier','Bronze · Wood · Bronze','#b07a4a'],
+   ['special',t.special,'Special','D&AD White Pencil — social good','#f4f1ea'],
+   ['uncredited',t.uncredited,'Uncredited','Cannes Lions won, not credited on platform','#8f8f9a']];
+  document.getElementById('aUni').innerHTML=cards.map(c=>`<div class="uni"><div class="uv" style="color:${c[4]}">${c[1]}</div><div class="ul">${c[2]}</div><div class="um">${c[3]}</div></div>`).join('');
+}
+function aCrownCards(){
+  const crowns=A.filter(c=>c.fest===3).sort((a,b)=>b.total-a.total||b.grand-a.grand);
+  document.getElementById('aCrownCards').innerHTML=crowns.map(c=>`<div class="gpcard" data-a="${c.ai}">
+    <div class="disc" style="color:var(--gold)">★ Triple Crown · ${c.total} trophies</div>
+    <h3>${c.title}</h3>
+    <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
+    <div class="split">Cannes ${c.ct} · D&AD ${c.dt} · One Show ${c.ot}${c.grand?` · <b style="color:var(--gold)">${c.grand} grand</b>`:''}</div>
+    <div class="watch">▶ Watch the film</div>
+  </div>`).join('');
+  document.querySelectorAll('#aCrownCards .gpcard').forEach(el=>el.addEventListener('click',()=>openModal(aMerged(A[+el.dataset.a]))));
+}
+function aAggYears(){const Y=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+  return Y.map(y=>{const cf=C.filter(c=>c.year===y).reduce((a,c)=>a+c.gp+c.g+c.s+c.b,0);
+    const df=D.filter(c=>c.year===y).reduce((a,c)=>a+(c.total||0),0);
+    const of=O.filter(c=>c.year===y).reduce((a,c)=>a+(c.total||0),0);
+    return {label:''+y,total:cf+df+of,cfest:cf,dfest:df,ofest:of,items:[]};});}
+function aCharts(){ lineChart('aYearChart',aAggYears(),{rot:false,padB:32,h:300}); }
+function aConclusions(){
+  const t=aTiers(), tot=aTotal(t);
+  const crowns=A.filter(c=>c.fest===3).sort((a,b)=>b.total-a.total);
+  const top=A.slice().sort((a,b)=>b.total-a.total)[0];
+  const cards=[
+   [tot,'trophies, one body of work','Across Cannes, D&AD and the One Show, the partnership has won <b>'+tot+'</b> individually-documented trophies — '+t.grand+' of them the very top honor at their show. Counted as one record, the scale is hard to overstate.'],
+   [crowns.length,'Triple-Crown ideas','<b>'+crowns.length+'</b> ideas didn\'t just travel — they won at <i>all three</i> festivals. '+crowns.slice(0,3).map(c=>c.title).join(', ')+' and more cleared every jury that saw them.'],
+   [top.total,'the single most-decorated idea','<b>'+top.title+'</b> alone took '+top.total+' trophies across the shows ('+top.ct+' Cannes · '+top.dt+' D&AD · '+top.ot+' One Show) — the centerpiece of the entire record.'],
+   [t.grand,'grand honors','Grand Prix, Black Pencil, Penta and Best of Discipline — <b>'+t.grand+'</b> times the work reached the absolute summit of a festival. Few partnerships own one; this one owns '+t.grand+'.']];
+  document.getElementById('aLearn').innerHTML=cards.map(c=>`<div class="lcard"><div class="lstat">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+  document.getElementById('aThesis').innerHTML='One method, three verdicts. The same handful of ideas — built big enough to sweep — were judged great by every jury that saw them: <b>'+tot+' trophies</b>, <b>'+t.grand+' grand honors</b>, <b>'+crowns.length+' Triple Crowns</b>. Cannes, D&AD and the One Show disagree on craft and currency, but not on the work.';
+}
+let aBuilt=false;
+function aHero(){
+  const t=aTiers(), tot=aTotal(t);
+  const crowns=A.filter(c=>c.fest===3).length;
+  document.getElementById('a-total').textContent=tot;
+  document.getElementById('a-grandline').innerHTML=t.grand+' of them the top honor at their show · '+crowns+' ideas won all three.';
+  document.getElementById('home-all-stat').textContent=tot+' trophies';
+  heroBreak('aBreakdown',[Object.assign({},t)],[['grand','gp','Grand'],['gold','g','Gold tier'],['silver','s','Silver tier'],['bronze','b','Bronze tier'],['special','white','White'],['uncredited','merit','Uncredited']]);
+}
+function aBuild(){ if(!A.length)consolidate(); aHero(); aFestCards(); aUni(); aCrownCards(); aRender(); aCharts(); aConclusions(); }
+document.getElementById('aRows').addEventListener('click',e=>{const tr=e.target.closest('tr');if(!tr)return;const idea=A[+tr.dataset.a];if(idea&&!idea.uncredited)openModal(aMerged(idea));});
+document.querySelectorAll('#atbl th').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.ak;if(aSortK===k)aSortDir*=-1;else{aSortK=k;aSortDir=(k==='title'||k==='brand')?1:-1;}aRender();}));
+// home card + hero breakdown
+document.getElementById('home-os-stat').innerHTML='46 <span>Pencils</span>';
+document.getElementById('home-os-meta').textContent='1 Penta · 2 Best of Discipline · 19 Gold · 2017–2026';
+
+// hero award breakdown — colored chips under the big number (mirrors the homepage cards)
+function heroBreak(id,rows,specs){
+  const s=k=>rows.reduce((a,c)=>a+(c[k]||0),0);
+  const html=specs.filter(sp=>s(sp[0])>0).map(sp=>`<span class="m ${sp[1]}">${s(sp[0])} ${sp[2]}</span>`).join('');
+  document.getElementById(id).innerHTML=html;
+}
+heroBreak('cBreakdown',C,[['gp','gp','Grand Prix'],['g','g','Gold'],['s','s','Silver'],['b','b','Bronze']]);
+heroBreak('dBreakdown',D,[['black','black','Black'],['white','white','White'],['yellow','yellow','Yellow'],['graphite','graphite','Graphite'],['wood','wood','Wood']]);
+heroBreak('oBreakdown',O,[['penta','penta','Penta Pencil'],['bod','bod','Best of Discipline'],['gold','g','Gold'],['silver','s','Silver'],['bronze','b','Bronze']]);
+consolidate();
+document.getElementById('home-all-stat').textContent=aTotal()+' trophies';
+
+render();buildGP();
+let _rt; window.addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{ if(!document.getElementById('view-cannes').hidden) buildCharts(); if(!document.getElementById('view-dnad').hidden) dCharts(); if(!document.getElementById('view-oneshow').hidden) oCharts(); if(!document.getElementById('view-all').hidden) aCharts(); },180);});
+</script>
+</body>
+</html>
