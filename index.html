@@ -29,7 +29,8 @@
   .home-hero{max-width:1180px;margin:0 auto;padding:clamp(56px,10vw,100px) 22px 70px;text-align:center}
   .home-title{font-size:clamp(54px,13vw,128px);font-weight:800;letter-spacing:.02em;line-height:.94;margin:14px 0 14px}
   .home-sub{color:var(--mute);font-size:clamp(16px,2.4vw,20px);max-width:640px;margin:0 auto 46px;line-height:1.5}
-  .entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1080px;margin:0 auto}
+  .entry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1080px;margin:0 auto}
+  @media(max-width:900px){.entry-grid{grid-template-columns:repeat(2,1fr)}}
   .entry{display:block;text-align:left;background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:30px;cursor:pointer;transition:transform .15s,border-color .15s;color:var(--ink);position:relative;overflow:hidden;font-family:inherit}
   .entry:hover{transform:translateY(-4px);border-color:var(--gold)}
   .entry:before{content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:radial-gradient(circle,rgba(212,175,55,.16),transparent 70%)}
@@ -150,6 +151,7 @@
   .allbanner:before{content:"";position:absolute;top:-60px;right:120px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.14),transparent 70%)}
   .allbanner-stat{font-size:46px;font-weight:800;letter-spacing:-.02em;line-height:1;margin:6px 0 4px;color:var(--gold)}
   .allbanner-go{color:var(--gold);font-weight:700;font-size:14px;white-space:nowrap;flex:none}
+  .m.sl{background:#26262e;color:#8a8a96;border:1px solid #3a3a44}
   /* super bowl */
   .sbbanner{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;max-width:1080px;margin:18px auto 0;text-align:left;
     background:linear-gradient(120deg,rgba(22,48,32,.55),var(--panel2));border:1px solid #2d4a38;border-radius:var(--radius);padding:22px 26px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .15s}
@@ -339,6 +341,7 @@
     <button class="tab" data-v="cannes" onclick="showView('cannes')">Cannes Lions</button>
     <button class="tab" data-v="dnad" onclick="showView('dnad')">D&amp;AD</button>
     <button class="tab" data-v="oneshow" onclick="showView('oneshow')">The One Show</button>
+    <button class="tab" data-v="clios" onclick="showView('clios')">Clios</button>
     <button class="tab" data-v="superbowl" onclick="showView('superbowl')">Super Bowl</button>
     <button class="tab" data-v="all" onclick="showView('all')">All Awards</button>
   </div>
@@ -368,12 +371,18 @@
         <div class="entry-meta" id="home-os-meta">Gold · Silver · Bronze · Merit</div>
         <div class="entry-go">Explore →</div>
       </button>
+      <button class="entry" style="--acc:#e0a24d" onclick="showView('clios')">
+        <div class="entry-fest" style="color:#e0a24d">Clios</div>
+        <div class="entry-stat">41 <span>Clios</span></div>
+        <div class="entry-meta">2 Grand Clios · 2016–2025</div>
+        <div class="entry-go" style="color:#e0a24d">Explore →</div>
+      </button>
     </div>
     <button class="allbanner" onclick="showView('all')">
       <div class="allbanner-l">
         <div class="entry-fest">All Awards · Consolidated</div>
         <div class="allbanner-stat" id="home-all-stat">—</div>
-        <div class="entry-meta" id="home-all-meta">Every trophy across the three festivals, unified and analyzed</div>
+        <div class="entry-meta" id="home-all-meta">Every trophy across the four shows, unified and analyzed</div>
       </div>
       <div class="allbanner-go">See everything together →</div>
     </button>
@@ -776,6 +785,102 @@
 </div></section>
 </div><!-- /view-oneshow -->
 
+<!-- CLIOS -->
+<div id="view-clios" class="view" hidden>
+<div class="subnav"><div class="wrap">
+  <a href="#c-story">The Story</a>
+  <a href="#c-top">Grand & Gold</a>
+  <a href="#c-work">The Work</a>
+  <a href="#c-year">By Year</a>
+  <a href="#c-brand">By Brand</a>
+  <a href="#c-learn">Conclusions</a>
+</div></div>
+
+<header><div class="wrap">
+  <div class="eyebrow">Casal Peña · Festival</div>
+  <h1>Clio&nbsp;Awards</h1>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — the Clio record across DAVID, Google and GUT, straight from the official winners gallery.</p>
+  <div class="bignum">
+    <div class="n">41</div>
+    <div class="lab"><b>Clio statues.</b> Crowned by <b style="color:var(--gold)">two GRAND CLIOS</b> — and the first Ecuadorian team ever to win one.</div>
+  </div>
+  <div class="bd-line" id="clBreakdown"></div>
+</div></header>
+
+<section id="c-story"><div class="wrap">
+  <h2>The story of the 41</h2>
+  <div class="story">
+    <p>It starts with a bang: in 2016, <span class="hl">Manboobs</span> took <span class="hl">seven Clios in one season</span> — including the <span class="hl">Grand Clio</span> at Clio Health — making Casal Peña the first Ecuadorian creative team ever to win a Grand. A year later <span class="hl">Google Home of the Whopper</span> took a second Grand, in Digital/Mobile.</p>
+    <p>Then the engine kept running: Gold for <span class="hl">Pass the Heinz</span>, <span class="hl">Whopper Neutrality</span> and <span class="hl">Try Not To Hear This</span> in the DAVID years; Gold for <span class="hl">That Look From Popeyes</span> in GUT's very first season, <span class="hl">Save It See It</span> in 2022 and <span class="hl">The World's Most Famous Hand Model</span> in 2025. Even the specialty juries paid up — Clio <span class="dim">Sports</span> (Michelob Ultra), Clio <span class="dim">Music</span> (#SeenOnPixel, Snowpeople) and Clio <span class="dim">Health</span> (Manboobs).</p>
+    <p class="dim" style="font-size:17px">Two Grand Clios. Nine Gold. Forty-one statues — plus six shortlists.</p>
+  </div>
+  <div class="stats" style="margin-top:34px">
+    <div class="stat"><div class="v" style="color:var(--gold)">2</div><div class="l">Grand ★</div></div>
+    <div class="stat"><div class="v">9</div><div class="l">Gold</div></div>
+    <div class="stat"><div class="v" style="color:var(--s)">17</div><div class="l">Silver</div></div>
+    <div class="stat"><div class="v" style="color:var(--b)">13</div><div class="l">Bronze</div></div>
+    <div class="stat"><div class="v" style="color:var(--faint)">6</div><div class="l">Shortlists</div></div>
+  </div>
+</div></section>
+
+<section id="c-top"><div class="wrap">
+  <h2>The Grand &amp; Gold Clios — tap to watch</h2>
+  <div class="gpgrid" id="clTopCards"></div>
+</div></section>
+
+<section id="c-work"><div class="wrap">
+  <h2>The work — tap any idea to watch it</h2>
+  <div style="overflow-x:auto">
+  <table id="cltbl">
+    <thead><tr>
+      <th>Year</th><th>Idea</th><th>Brand</th><th>Agency</th>
+      <th style="text-align:center">Grand</th><th style="text-align:center">Gold</th><th style="text-align:center">Silver</th><th style="text-align:center">Bronze</th><th style="text-align:center">SL</th><th style="text-align:center">Clios</th>
+    </tr></thead>
+    <tbody id="clRows"></tbody>
+    <tfoot><tr class="totrow">
+      <td colspan="4">Total per tier</td>
+      <td style="text-align:center" id="clt-grand"></td>
+      <td style="text-align:center" id="clt-gold"></td>
+      <td style="text-align:center" id="clt-silver"></td>
+      <td style="text-align:center" id="clt-bronze"></td>
+      <td style="text-align:center" id="clt-sl"></td>
+      <td style="text-align:center" id="clt-t"></td>
+    </tr></tfoot>
+  </table>
+  </div>
+  <p class="count-line" id="clCount"></p>
+</div></section>
+
+<section id="c-year"><div class="wrap">
+  <h2>Clios by year</h2>
+  <div class="chartwrap" id="clYearChart"></div>
+  <p class="note"><b style="color:#e0a24d">Hover any year</b> for its breakdown. Statues in nine of ten seasons entered — the 2016–17 Grand run, then an unbroken GUT-era streak from 2020 on.</p>
+</div></section>
+
+<section id="c-brand"><div class="wrap">
+  <h2>Clios by brand</h2>
+  <div class="chartwrap" id="clBrandChart"></div>
+  <p class="note"><b style="color:#e0a24d">Hover any brand</b> for its breakdown. Burger King leads on volume; MACMA's two charity ideas delivered a Grand and the single richest haul-per-idea.</p>
+</div></section>
+
+<section id="c-learn"><div class="wrap">
+  <h2>Conclusions &amp; Learnings</h2>
+  <p class="lead">What the Clio record adds to the picture — verified idea by idea against the official winners gallery, 2016–2026.</p>
+  <div class="lgrid">
+    <div class="lcard"><div class="lstat" style="color:var(--gold)">2</div><h3>Two Grand Clios — a first for Ecuador</h3><p><b>Manboobs</b> (Clio Health, 2016) and <b>Google Home of the Whopper</b> (Digital/Mobile, 2017) both reached the very top — and made Casal Peña the first Ecuadorian team ever to win a Grand Clio.</p></div>
+    <div class="lcard"><div class="lstat">7</div><h3>Manboobs: seven in one season</h3><p>A Grand, two Gold, three Silver and a Bronze — across the main show <i>and</i> Clio Health. The most Clio-decorated idea of the record, from a charity budget.</p></div>
+    <div class="lcard"><div class="lstat">4</div><h3>BK Bot, the copywriting machine</h3><p>Four Clios — three Silver, one Bronze — with two of them in <b>copywriting craft</b> categories (Audio and Film Technique). The rare award that decorated the duo's writing itself, not just the stunt.</p></div>
+    <div class="lcard"><div class="lstat">↔</div><h3>The Ad Meter inversion, certified</h3><p>America ranked <b>Eat Like Andy</b> dead last at the Super Bowl; the Clio jury gave it Silver and Bronze. Same split as Cannes and D&amp;AD — the populist poll and the craft jury watching different movies.</p></div>
+    <div class="lcard"><div class="lstat">3</div><h3>Three specialty shows, same result</h3><p>Clio <b>Health</b> (Manboobs Grand), Clio <b>Sports</b> (Save It See It Silver, Joy is the Ultimate Trophy Bronze) and Clio <b>Music</b> (#SeenOnPixel Silver, Snowpeople Bronze). The ideas win wherever the jury specializes.</p></div>
+    <div class="lcard"><div class="lstat">9/10</div><h3>No blank years</h3><p>Statues in nine of the ten seasons entered between 2016 and 2025 — through an agency move and a Google chapter. The only quiet season (2021) is the year the show itself skipped a cycle.</p></div>
+  </div>
+  <div class="thesis">
+    <div class="lab">The throughline</div>
+    <p>The Clios confirm the pattern with a fourth, independent jury: <b>41 statues</b>, <b>two Grands</b>, gold in both eras. Cannes rewards the splash, D&amp;AD the craft, the One Show the discipline — and the Clios, watching it all, reached the same verdict: <b>bet on the idea.</b></p>
+  </div>
+</div></section>
+</div><!-- /view-clios -->
+
 <!-- ALL AWARDS (CONSOLIDATED) -->
 <div id="view-superbowl" class="view" hidden>
 <header class="fest-hero"><div class="wrap">
@@ -817,19 +922,19 @@
 <header><div class="wrap">
   <div class="eyebrow">Casal Peña · The Complete Record</div>
   <h1>All Awards</h1>
-  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — every trophy across Cannes Lions, D&amp;AD and The One Show, unified.</p>
+  <p class="names"><b>Ricardo Casal</b> &amp; <b>Juan Javier Peña Plaza</b> — every trophy across Cannes Lions, D&amp;AD, The One Show and the Clios, unified.</p>
   <div class="bignum">
     <div class="n" id="a-total">—</div>
-    <div class="lab"><b>trophies across three festivals.</b> <span id="a-grandline">—</span></div>
+    <div class="lab"><b>trophies across four shows.</b> <span id="a-grandline">—</span></div>
   </div>
   <div class="bd-line" id="aBreakdown"></div>
 </div></header>
 
 <section id="a-story"><div class="wrap">
-  <h2>One body of work, three juries</h2>
+  <h2>One body of work, four juries</h2>
   <div class="story">
-    <p>Three of advertising's most respected festivals — <span class="hl">Cannes Lions</span>, <span class="hl">D&amp;AD</span> and <span class="hl">The One Show</span> — each with its own jury, its own crafts, its own currency of pencils and lions. Put side by side, the same ideas keep winning at all three.</p>
-    <p>To compare them fairly, every award is mapped onto one ladder: <span class="hl">Grand</span> (a Grand Prix, a Black Pencil, a Penta or Best of Discipline), then <span class="hl">Gold</span>, <span class="hl">Silver</span> and <span class="hl">Bronze</span> tiers — plus D&amp;AD's <span class="hl">White Pencil</span> for social good. The result is the full picture of what this partnership has actually won.</p>
+    <p>Four of advertising's most respected shows — <span class="hl">Cannes Lions</span>, <span class="hl">D&amp;AD</span>, <span class="hl">The One Show</span> and the <span class="hl">Clios</span> — each with its own jury, its own crafts, its own currency of pencils, lions and statues. Put side by side, the same ideas keep winning at all of them.</p>
+    <p>To compare them fairly, every award is mapped onto one ladder: <span class="hl">Grand</span> (a Grand Prix, a Black Pencil, a Penta or Best of Discipline), then <span class="hl">Gold</span>, <span class="hl">Silver</span> and <span class="hl">Bronze</span> tiers — plus D&amp;AD's <span class="hl">White Pencil</span> for social good. A Grand Prix, a Black Pencil, a Penta and a <span class="hl">Grand Clio</span> all sit on the same top rung. The result is the full picture of what this partnership has actually won.</p>
   </div>
 </div></section>
 
@@ -846,7 +951,7 @@
 </div></section>
 
 <section id="a-crown"><div class="wrap">
-  <h2>The Triple Crown — ideas that won at all three — tap to watch</h2>
+  <h2>The Triple Crown &amp; Grand Slam — ideas that won at three or more shows — tap to watch</h2>
   <div class="gpgrid" id="aCrownCards"></div>
 </div></section>
 
@@ -861,6 +966,7 @@
       <th data-ak="ct" style="text-align:center">Cannes</th>
       <th data-ak="dt" style="text-align:center">D&amp;AD</th>
       <th data-ak="ot" style="text-align:center">One Show</th>
+      <th data-ak="clt" style="text-align:center">Clios</th>
       <th data-ak="total" style="text-align:center">Total</th>
       <th data-ak="fest" style="text-align:center">Reach</th>
     </tr></thead>
@@ -870,12 +976,13 @@
       <td style="text-align:center" id="at-c"></td>
       <td style="text-align:center" id="at-d"></td>
       <td style="text-align:center" id="at-o"></td>
+      <td style="text-align:center" id="at-cl"></td>
       <td style="text-align:center" id="at-t"></td>
       <td></td>
     </tr></tfoot>
   </table>
   </div>
-  <p class="count-line"><b id="aCount"></b> ideas · won across the three festivals · tap a row to watch the case film</p>
+  <p class="count-line"><b id="aCount"></b> ideas · won across the four shows · tap a row to watch the case film</p>
 </div></section>
 
 <section id="a-year"><div class="wrap">
@@ -1110,6 +1217,11 @@ function openModal(c){
   if(c.gold)chips.push(`<span class="m g">${c.gold} Gold Pencil</span>`);
   if(c.silver)chips.push(`<span class="m s">${c.silver} Silver Pencil</span>`);
   if(c.bronze)chips.push(`<span class="m b">${c.bronze} Bronze Pencil</span>`);
+  if(c.clioGrand)chips.push(`<span class="m gp">★ ${c.clioGrand} GRAND CLIO</span>`);
+  if(c.clioGold)chips.push(`<span class="m g">${c.clioGold} Gold Clio</span>`);
+  if(c.clioSilver)chips.push(`<span class="m s">${c.clioSilver} Silver Clio</span>`);
+  if(c.clioBronze)chips.push(`<span class="m b">${c.clioBronze} Bronze Clio</span>`);
+  if(c.clioSL)chips.push(`<span class="m sl">${c.clioSL} Clio Shortlist</span>`);
   $("#mSplits").innerHTML=chips.join(" ");
   $("#mCredit").textContent=c.credit||"Ricardo Casal & Juan Javier Peña Plaza";
   // gallery of all local CP files for this idea
@@ -1223,14 +1335,20 @@ function tipHTML(d){
     if(d.cfest)bd.push(`<span class="m g">${d.cfest} Cannes</span>`);
     if(d.dfest)bd.push(`<span class="m yellow">${d.dfest} D&AD</span>`);
     if(d.ofest)bd.push(`<span class="m bod">${d.ofest} One Show</span>`);
+    if(d.clfest)bd.push(`<span class="m s">${d.clfest} Clios</span>`);
     if(d.total===0) return `<div class="t-hd">${d.label}</div><div class="t-tot">0 trophies</div>`;
     return `<div class="t-hd">${d.label}</div><div class="t-tot">${d.total} ${d.total>1?'trophies':'trophy'}</div><div class="t-bd">${bd.join(' ')}</div>`;
   }
   const pen=('yellow'in d)||('graphite'in d)||('wood'in d);
   const os=('penta'in d)||('bod'in d);
-  const unit=os?'Pencil':pen?'Pencil':'Lion';
-  if(d.total===0) return `<div class="t-hd">${d.label}</div><div class="t-tot">0 ${unit}s</div><div class="t-items">${os?'No One Show wins this year':pen?'No D&AD wins this year':'Cannes paused — Covid'}</div>`;
+  const clio=('clioGrand'in d)||('clioGold'in d);
+  const unit=clio?'Clio':os?'Pencil':pen?'Pencil':'Lion';
+  if(d.total===0) return `<div class="t-hd">${d.label}</div><div class="t-tot">0 ${unit}s</div><div class="t-items">${clio?'No Clio statues this year':os?'No One Show wins this year':pen?'No D&AD wins this year':'Cannes paused — Covid'}</div>`;
   const bd=[];
+  if(d.clioGrand)bd.push(`<span class="m gp">★ ${d.clioGrand} Grand</span>`);
+  if(d.clioGold)bd.push(`<span class="m g">${d.clioGold} Gold</span>`);
+  if(d.clioSilver)bd.push(`<span class="m s">${d.clioSilver} Silver</span>`);
+  if(d.clioBronze)bd.push(`<span class="m b">${d.clioBronze} Bronze</span>`);
   if(d.gp)bd.push(`<span class="m gp">${d.gp} GP</span>`);
   if(d.g)bd.push(`<span class="m g">${d.g} Gold</span>`);
   if(d.s)bd.push(`<span class="m s">${d.s} Silver</span>`);
@@ -1298,7 +1416,7 @@ function lineChart(wrapId,data,opts){
 function buildCharts(){ lineChart('yearChart',aggYears(),{rot:false,padB:32,h:300}); lineChart('brandChart',aggBrands(),{rot:true,padB:74,h:320}); }
 
 function showView(v){
-  ['home','cannes','dnad','oneshow','all','superbowl'].forEach(x=>{document.getElementById('view-'+x).hidden=(x!==v);});
+  ['home','cannes','dnad','oneshow','all','superbowl','clios'].forEach(x=>{document.getElementById('view-'+x).hidden=(x!==v);});
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.v===v));
   window.scrollTo(0,0);
   if(v==='cannes') buildCharts();
@@ -1306,6 +1424,7 @@ function showView(v){
   if(v==='oneshow') oBuild();
   if(v==='all') aBuild();
   if(v==='superbowl') sbBuild();
+  if(v==='clios') clBuild();
 }
 
 /* ===== SUPER BOWL ===== */
@@ -1573,6 +1692,97 @@ function oAggBrands(){const m={};O.forEach(c=>{m[c.brand]=m[c.brand]||{penta:0,b
 function oCharts(){ lineChart('oYearChart',oAggYears(),{rot:false,padB:32,h:300}); lineChart('oBrandChart',oAggBrands(),{rot:true,padB:74,h:320}); }
 function oBuild(){ oRender(); oTopCards(); oCharts(); }
 
+/* ===== CLIOS ===== */
+const CL=[
+ {year:2016,title:"Manboobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",clioGrand:1,clioGold:2,clioSilver:3,clioBronze:1,disc:"Clios 2016 · GRAND CLIO (Clio Health) + 2 Gold — 7 statues from one idea"},
+ {year:2016,title:"Wiener Stampede",brand:"Heinz",agency:"DAVID",office:"Miami",clioSilver:1},
+ {year:2016,title:"Whopper Sign",brand:"Burger King",agency:"DAVID",office:"Miami",clioBronze:1},
+ {year:2017,title:"Google Home of the Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",clioGrand:1,clioGold:1,disc:"Clios 2017 · GRAND CLIO — Digital/Mobile"},
+ {year:2017,title:"Pass the Heinz",brand:"Heinz",agency:"DAVID",office:"Miami",clioGold:1,clioSilver:2,clioSL:1,disc:"Clios 2017 · Gold — Out of Home"},
+ {year:2017,title:"Scariest BK",brand:"Burger King",agency:"DAVID",office:"Miami",clioSilver:1},
+ {year:2018,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami",clioGold:1,clioBronze:1,disc:"Clios 2018 · Gold — Social Video"},
+ {year:2018,title:"McMansions",brand:"Burger King",agency:"DAVID",office:"Miami",clioSL:1},
+ {year:2019,title:"Try Not To Hear This",brand:"Coca-Cola",agency:"DAVID",office:"Miami",clioGold:1,clioSilver:1,disc:"Clios 2019 · Gold — Print"},
+ {year:2019,title:"BK BOT",brand:"Burger King",agency:"DAVID",office:"Miami",clioSilver:3,clioBronze:1},
+ {year:2019,title:"Eat Like Andy",brand:"Burger King",agency:"DAVID",office:"Miami",clioSilver:1,clioBronze:1},
+ {year:2019,title:"Wind Never Felt Better",brand:"Budweiser",agency:"DAVID",office:"Miami",clioBronze:2,clioSL:1},
+ {year:2020,title:"That Look from Popeyes",brand:"Popeyes",agency:"GUT",office:"Miami",clioGold:1,disc:"Clios 2020 · Gold — Branded Entertainment, in GUT's first season"},
+ {year:2020,title:"Philly Series 5",brand:"Philadelphia",agency:"GUT",office:"Miami",clioBronze:1,media:[
+   {t:"video",f:"z. Unawarded/Philly Series 5/PHILADELPHIA CREAM CHEESE - Philly Series 5 - GUT - Cannes Lions 2021 (Case Film from The Work - 708320-17129842).mp4"}]},
+ {year:2020,title:"Snowpeople",brand:"Tim Hortons",agency:"GUT",office:"Toronto",clioBronze:1,disc:"Clio Music 2020 · Bronze",media:[
+   {t:"video",f:"z. Unawarded/Snowpeople/TIM HORTONS - Diverse Snowpeople - GUT - Cannes Lions 2021 (Supporting Content from The Work - 712536-17143077).mp4"}]},
+ {year:2020,title:"Edchup",brand:"Heinz",agency:"DAVID",office:"Miami",clioSL:1,disc:"Clios 2020 · Creative Effectiveness shortlist",media:[
+   {t:"video",f:"z. Shortlists/Edchup/HEINZ - Edchup - DAVID - Cannes Lions 2020 (Case Film from The Work - 707917-17128194).mp4"}]},
+ {year:2022,title:"Save It See It",brand:"Michelob Ultra",agency:"GUT",office:"Miami",clioGold:1,clioSilver:1,disc:"Clios 2022 · Gold (Direct) + Clio Sports Silver"},
+ {year:2022,title:"Vanguards of Photography",brand:"Call of Duty",agency:"GUT",office:"Miami",clioSilver:1},
+ {year:2022,title:"Joy is the Ultimate Trophy",brand:"Michelob Ultra",agency:"GUT",office:"Miami",clioBronze:1,disc:"Clio Sports 2022 · Bronze — Out of Home",media:[
+   {t:"image",f:"z. Shortlists/Joy is the Ultimate Trophy/MICHELOB ULTRA - Michelob Ultra - Joy Is The Ultimate Trophy  - GUT - Cannes Lions 2022 (Digital Proof JPG from The Work - 772193-19370759).jpg"}]},
+ {year:2022,title:"Lizzo in Real Tone · #SeenOnPixel",brand:"Google Pixel",agency:"Google · GUT",office:"Miami",clioSilver:1,disc:"Clio Music 2022 · Silver — Use of Music in Film"},
+ {year:2022,title:"We Come in Peace",brand:"Popeyes",agency:"GUT",office:"Miami",clioSL:1,media:[
+   {t:"video",f:"z. Shortlists/We Come in Peace/POPEYES LOUISIANA KITCHEN  - Popeyes - We Come In Piece - GUT - Cannes Lions 2022 (Case Film from The Work - 774144-24815546).mp4"}]},
+ {year:2023,title:"12 Hour Marination",brand:"Popeyes",agency:"GUT",office:"Miami",clioBronze:1},
+ {year:2023,title:"Timbiebs",brand:"Tim Hortons",agency:"GUT",office:"Toronto",clioSL:1,media:[
+   {t:"video",f:"Timbiebs/TIM HORTONS - Timbiebs - GUT - Cannes Lions 2023 (Case Film from The Work - 1541569-19370488).mp4"}]},
+ {year:2024,title:"Bagel Tax",brand:"Philadelphia",agency:"GUT",office:"Miami",clioSilver:1,clioBronze:1},
+ {year:2025,title:"World's Most Famous Hand Model",brand:"Stella Artois",agency:"GUT",office:"Miami",clioGold:1,disc:"Clios 2025 · Gold — Print"},
+ {year:2025,title:"Mayo Haters",brand:"NotCo",agency:"GUT",office:"Miami",clioSilver:1},
+ {year:2025,title:"NotTurtle",brand:"NotCo",agency:"GUT",office:"Miami",clioBronze:1},
+];
+CL.forEach((c,i)=>{c.total=(c.clioGrand||0)+(c.clioGold||0)+(c.clioSilver||0)+(c.clioBronze||0);c.cli=i;});
+function clCell(n,cls){return n>0?`<span class="m ${cls}">${n}</span>`:`<span class="m z">·</span>`;}
+function clRender(){
+  const data=CL.slice().sort((a,b)=>a.year-b.year);
+  document.getElementById('clRows').innerHTML=data.map(c=>`<tr data-cli="${c.cli}">
+    <td>${c.year}</td>
+    <td class="title"><span class="play">▶</span>${c.title}</td>
+    <td class="ag">${c.brand}</td>
+    <td class="ag">${c.agency}, ${c.office}</td>
+    <td style="text-align:center">${clCell(c.clioGrand,'gp')}</td>
+    <td style="text-align:center">${clCell(c.clioGold,'g')}</td>
+    <td style="text-align:center">${clCell(c.clioSilver,'s')}</td>
+    <td style="text-align:center">${clCell(c.clioBronze,'b')}</td>
+    <td style="text-align:center">${clCell(c.clioSL,'sl')}</td>
+    <td style="text-align:center"><b>${c.total}</b></td>
+  </tr>`).join('');
+  const cs=k=>CL.reduce((a,c)=>a+(c[k]||0),0);
+  document.getElementById('clt-grand').innerHTML=`<span class="m gp">${cs('clioGrand')}</span>`;
+  document.getElementById('clt-gold').innerHTML=`<span class="m g">${cs('clioGold')}</span>`;
+  document.getElementById('clt-silver').innerHTML=`<span class="m s">${cs('clioSilver')}</span>`;
+  document.getElementById('clt-bronze').innerHTML=`<span class="m b">${cs('clioBronze')}</span>`;
+  document.getElementById('clt-sl').innerHTML=`<span class="m sl">${cs('clioSL')}</span>`;
+  document.getElementById('clt-t').textContent=cs('clioGrand')+cs('clioGold')+cs('clioSilver')+cs('clioBronze');
+  document.getElementById('clCount').innerHTML=`<b>${CL.length}</b> ideas · statues + shortlists, verified against the official Clios winners gallery · tap a row to watch`;
+}
+function clTopCards(){
+  const tops=CL.filter(c=>(c.clioGrand||0)+(c.clioGold||0)>0).sort((a,b)=>(b.clioGrand||0)-(a.clioGrand||0)||b.year-a.year);
+  document.getElementById('clTopCards').innerHTML=tops.map(c=>`<div class="gpcard" data-cli="${c.cli}">
+    <div class="disc">${c.clioGrand?'★ GRAND CLIO':'Gold Clio'} · ${c.year}</div>
+    <h3>${c.title}</h3>
+    <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
+    <div class="split">${c.disc||((c.clioGold?c.clioGold+' Gold':'')+(c.clioSilver?' · '+c.clioSilver+' Silver':'')+(c.clioBronze?' · '+c.clioBronze+' Bronze':''))}</div>
+    <div class="watch">▶ Watch the film</div>
+  </div>`).join('');
+  document.querySelectorAll('#clTopCards .gpcard').forEach(el=>el.addEventListener('click',()=>openModal(CL[+el.dataset.cli])));
+}
+function clAggYears(){
+  const Y=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+  return Y.map(y=>{const rows=CL.filter(c=>c.year===y);const g=k=>rows.reduce((a,c)=>a+(c[k]||0),0);
+    return {label:''+y,total:g('clioGrand')+g('clioGold')+g('clioSilver')+g('clioBronze'),clioGrand:g('clioGrand'),clioGold:g('clioGold'),clioSilver:g('clioSilver'),clioBronze:g('clioBronze'),items:rows.map(c=>c.title)};});
+}
+function clAggBrands(){
+  const m={};
+  CL.forEach(c=>{m[c.brand]=m[c.brand]||{clioGrand:0,clioGold:0,clioSilver:0,clioBronze:0,total:0,items:[]};
+    ['clioGrand','clioGold','clioSilver','clioBronze'].forEach(k=>m[c.brand][k]+=(c[k]||0));m[c.brand].total+=c.total;m[c.brand].items.push(c.title);});
+  return Object.entries(m).filter(([,v])=>v.total>0).sort((a,b)=>b[1].total-a[1].total).map(([label,v])=>Object.assign({label},v));
+}
+function clCharts(){ lineChart('clYearChart',clAggYears(),{rot:false,padB:32,h:300}); lineChart('clBrandChart',clAggBrands(),{rot:true,padB:74,h:320}); }
+let clMediaWired=false;
+function clBuild(){
+  if(!clMediaWired){CL.forEach(c=>{if(!c.media){const src=[...C,...D,...O].find(x=>x.media&&canonKey(x.title)===canonKey(c.title));if(src)c.media=src.media;}});clMediaWired=true;}
+  clRender(); clTopCards(); clCharts();
+}
+document.getElementById('clRows').addEventListener('click',e=>{const tr=e.target.closest('tr');if(tr)openModal(CL[+tr.dataset.cli]);});
+
 /* ===== ALL AWARDS (CONSOLIDATED) ===== */
 // map every entry's title to one canonical idea key so the same idea unifies across festivals
 function canonKey(title){
@@ -1598,31 +1808,33 @@ const CANNES_UNCREDITED=11; // Cannes personal tracker 103 − documented 92 = u
 function consolidate(){
   const M={};
   function add(fest,arr,tiers){arr.forEach(c=>{const k=canonKey(c.title);
-    if(!M[k])M[k]={title:k,brand:c.brand,agency:c.agency,office:c.office||'',year:c.year||9999,cannes:{},dnad:{},oneshow:{},media:null,credit:null};
+    if(!M[k])M[k]={title:k,brand:c.brand,agency:c.agency,office:c.office||'',year:c.year||9999,cannes:{},dnad:{},oneshow:{},clios:{},media:null,credit:null};
     const r=M[k]; if(!r.media&&c.media)r.media=c.media; if(c.credit&&!r.credit)r.credit=c.credit;
     if(c.year&&c.year<r.year)r.year=c.year; if(!r.brand)r.brand=c.brand;
     tiers.forEach(t=>{if(c[t])r[fest][t]=(r[fest][t]||0)+c[t];});});}
   add('cannes',C,['gp','g','s','b']);
   add('dnad',D,['black','white','yellow','graphite','wood']);
   add('oneshow',O,['penta','bod','gold','silver','bronze']);
+  add('clios',CL,['clioGrand','clioGold','clioSilver','clioBronze']);
   const sum=o=>Object.values(o).reduce((a,b)=>a+b,0);
-  A=Object.values(M).map((r,i)=>{const ct=sum(r.cannes),dt=sum(r.dnad),ot=sum(r.oneshow);
-    const grand=(r.cannes.gp||0)+(r.dnad.black||0)+(r.oneshow.penta||0)+(r.oneshow.bod||0);
-    return Object.assign(r,{ct,dt,ot,total:ct+dt+ot,fest:(ct>0)+(dt>0)+(ot>0),grand,ai:i});});
-  A.push({title:'Uncredited Cannes Lions',brand:'DAVID · GUT',agency:'various',office:'',year:'—',cannes:{},dnad:{},oneshow:{},media:null,
-    ct:CANNES_UNCREDITED,dt:0,ot:0,total:CANNES_UNCREDITED,fest:1,grand:0,uncredited:true,ai:A.length});
+  A=Object.values(M).map((r,i)=>{const ct=sum(r.cannes),dt=sum(r.dnad),ot=sum(r.oneshow),clt=sum(r.clios);
+    const grand=(r.cannes.gp||0)+(r.dnad.black||0)+(r.oneshow.penta||0)+(r.oneshow.bod||0)+(r.clios.clioGrand||0);
+    return Object.assign(r,{ct,dt,ot,clt,total:ct+dt+ot+clt,fest:(ct>0)+(dt>0)+(ot>0)+(clt>0),grand,ai:i});});
+  A.push({title:'Uncredited Cannes Lions',brand:'DAVID · GUT',agency:'various',office:'',year:'—',cannes:{},dnad:{},oneshow:{},clios:{},media:null,
+    ct:CANNES_UNCREDITED,dt:0,ot:0,clt:0,total:CANNES_UNCREDITED,fest:1,grand:0,uncredited:true,ai:A.length});
   return A;
 }
 // merged campaign object → reuse the existing modal (it renders chips for every tier)
 function aMerged(idea){return Object.assign({title:idea.title,brand:idea.brand,agency:idea.agency,office:idea.office,year:idea.year,
   media:idea.media,credit:idea.credit,disc:idea.fest===3?'★ Triple Crown · won at all three festivals':idea.total+' trophies · '+idea.fest+' festival'+(idea.fest>1?'s':'')},
-  idea.cannes,idea.dnad,idea.oneshow);}
+  idea.cannes,idea.dnad,idea.oneshow,idea.clios);}
 // unified tiers
 function aTiers(){
   const t={grand:0,gold:0,silver:0,bronze:0,special:0,uncredited:CANNES_UNCREDITED};
   C.forEach(c=>{t.grand+=c.gp||0;t.gold+=c.g||0;t.silver+=c.s||0;t.bronze+=c.b||0;});
   D.forEach(c=>{t.grand+=c.black||0;t.special+=c.white||0;t.gold+=c.yellow||0;t.silver+=c.graphite||0;t.bronze+=c.wood||0;});
   O.forEach(c=>{t.grand+=(c.penta||0)+(c.bod||0);t.gold+=c.gold||0;t.silver+=c.silver||0;t.bronze+=c.bronze||0;});
+  CL.forEach(c=>{t.grand+=c.clioGrand||0;t.gold+=c.clioGold||0;t.silver+=c.clioSilver||0;t.bronze+=c.clioBronze||0;});
   return t;
 }
 function aTotal(t){t=t||aTiers();return t.grand+t.gold+t.silver+t.bronze+t.special+t.uncredited;}
@@ -1638,8 +1850,9 @@ function aRender(){
     <td style="text-align:center">${fcell(c.ct,'')}</td>
     <td style="text-align:center">${fcell(0,'')}</td>
     <td style="text-align:center">${fcell(0,'')}</td>
+    <td style="text-align:center">${fcell(0,'')}</td>
     <td style="text-align:center"><b>${c.total}</b></td>
-    <td style="text-align:center"><span class="reach"><i class="on"></i><i></i><i></i></span></td>
+    <td style="text-align:center"><span class="reach"><i class="on"></i><i></i><i></i><i></i></span></td>
   </tr>`:
    `<tr data-a="${c.ai}" class="${c.fest===3?'crown':''}">
     <td>${c.year}</td>
@@ -1648,13 +1861,15 @@ function aRender(){
     <td style="text-align:center">${fcell(c.ct,'')}</td>
     <td style="text-align:center">${fcell(c.dt,'')}</td>
     <td style="text-align:center">${fcell(c.ot,'')}</td>
+    <td style="text-align:center">${fcell(c.clt,'')}</td>
     <td style="text-align:center"><b>${c.total}</b></td>
-    <td style="text-align:center"><span class="reach"><i class="${c.ct?'on':''}"></i><i class="${c.dt?'on':''}"></i><i class="${c.ot?'on':''}"></i></span></td>
+    <td style="text-align:center"><span class="reach"><i class="${c.ct?'on':''}"></i><i class="${c.dt?'on':''}"></i><i class="${c.ot?'on':''}"></i><i class="${c.clt?'on':''}"></i></span></td>
   </tr>`).join('');
   const cs=k=>A.reduce((a,c)=>a+c[k],0);
   document.getElementById('at-c').innerHTML=`<b>${cs('ct')}</b>`;
   document.getElementById('at-d').innerHTML=`<b>${cs('dt')}</b>`;
   document.getElementById('at-o').innerHTML=`<b>${cs('ot')}</b>`;
+  document.getElementById('at-cl').innerHTML=`<b>${cs('clt')}</b>`;
   document.getElementById('at-t').innerHTML=`<b>${cs('total')}</b>`;
   document.getElementById('aCount').textContent=A.filter(c=>!c.uncredited).length;
 }
@@ -1662,7 +1877,8 @@ function aFestCards(){
   const cs=(arr,ks)=>arr.reduce((a,c)=>a+ks.reduce((x,k)=>x+(c[k]||0),0),0);
   const f=[['Cannes Lions','cannes',cs(C,['gp','g','s','b'])+CANNES_UNCREDITED,C.length+' ideas · 3 Grand Prix · incl. 11 uncredited'],
    ['D&AD','dnad',cs(D,['black','white','yellow','graphite','wood']),D.length+' ideas · 1 Black Pencil'],
-   ['The One Show','oneshow',cs(O,['penta','bod','gold','silver','bronze']),O.length+' winners · 1 Penta + 2 BoD']];
+   ['The One Show','oneshow',cs(O,['penta','bod','gold','silver','bronze']),O.length+' winners · 1 Penta + 2 BoD'],
+   ['Clios','clios',cs(CL,['clioGrand','clioGold','clioSilver','clioBronze']),CL.length+' ideas · 2 Grand Clios']];
   document.getElementById('aFestRow').innerHTML=f.map(x=>`<div class="festcard" onclick="showView('${x[1]}')">
     <div class="fn">${x[2]}</div><div class="fl">${x[0]}</div><div class="fx">${x[3]} →</div></div>`).join('');
 }
@@ -1678,12 +1894,12 @@ function aUni(){
   document.getElementById('aUni').innerHTML=cards.map(c=>`<div class="uni"><div class="uv" style="color:${c[4]}">${c[1]}</div><div class="ul">${c[2]}</div><div class="um">${c[3]}</div></div>`).join('');
 }
 function aCrownCards(){
-  const crowns=A.filter(c=>c.fest===3).sort((a,b)=>b.total-a.total||b.grand-a.grand);
+  const crowns=A.filter(c=>c.fest>=3).sort((a,b)=>b.fest-a.fest||b.total-a.total||b.grand-a.grand);
   document.getElementById('aCrownCards').innerHTML=crowns.map(c=>`<div class="gpcard" data-a="${c.ai}">
-    <div class="disc" style="color:var(--gold)">★ Triple Crown · ${c.total} trophies</div>
+    <div class="disc" style="color:var(--gold)">${c.fest===4?'★★ GRAND SLAM — all four shows':'★ Triple Crown'} · ${c.total} trophies</div>
     <h3>${c.title}</h3>
     <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
-    <div class="split">Cannes ${c.ct} · D&AD ${c.dt} · One Show ${c.ot}${c.grand?` · <b style="color:var(--gold)">${c.grand} grand</b>`:''}</div>
+    <div class="split">Cannes ${c.ct} · D&AD ${c.dt} · One Show ${c.ot} · Clios ${c.clt}${c.grand?` · <b style="color:var(--gold)">${c.grand} grand</b>`:''}</div>
     <div class="watch">▶ Watch the film</div>
   </div>`).join('');
   document.querySelectorAll('#aCrownCards .gpcard').forEach(el=>el.addEventListener('click',()=>openModal(aMerged(A[+el.dataset.a]))));
@@ -1692,26 +1908,27 @@ function aAggYears(){const Y=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,
   return Y.map(y=>{const cf=C.filter(c=>c.year===y).reduce((a,c)=>a+c.gp+c.g+c.s+c.b,0);
     const df=D.filter(c=>c.year===y).reduce((a,c)=>a+(c.total||0),0);
     const of=O.filter(c=>c.year===y).reduce((a,c)=>a+(c.total||0),0);
-    return {label:''+y,total:cf+df+of,cfest:cf,dfest:df,ofest:of,items:[]};});}
+    const clf=CL.filter(c=>c.year===y).reduce((a,c)=>a+(c.total||0),0);
+    return {label:''+y,total:cf+df+of+clf,cfest:cf,dfest:df,ofest:of,clfest:clf,items:[]};});}
 function aCharts(){ lineChart('aYearChart',aAggYears(),{rot:false,padB:32,h:300}); }
 function aConclusions(){
   const t=aTiers(), tot=aTotal(t);
-  const crowns=A.filter(c=>c.fest===3).sort((a,b)=>b.total-a.total);
+  const crowns=A.filter(c=>c.fest>=3).sort((a,b)=>b.fest-a.fest||b.total-a.total);
   const top=A.slice().sort((a,b)=>b.total-a.total)[0];
   const cards=[
-   [tot,'trophies, one body of work','Across Cannes, D&AD and the One Show, the partnership has won <b>'+tot+'</b> individually-documented trophies — '+t.grand+' of them the very top honor at their show. Counted as one record, the scale is hard to overstate.'],
-   [crowns.length,'Triple-Crown ideas','<b>'+crowns.length+'</b> ideas didn\'t just travel — they won at <i>all three</i> festivals. '+crowns.slice(0,3).map(c=>c.title).join(', ')+' and more cleared every jury that saw them.'],
-   [top.total,'the single most-decorated idea','<b>'+top.title+'</b> alone took '+top.total+' trophies across the shows ('+top.ct+' Cannes · '+top.dt+' D&AD · '+top.ot+' One Show) — the centerpiece of the entire record.'],
-   [t.grand,'grand honors','Grand Prix, Black Pencil, Penta and Best of Discipline — <b>'+t.grand+'</b> times the work reached the absolute summit of a festival. Few partnerships own one; this one owns '+t.grand+'.']];
+   [tot,'trophies, one body of work','Across Cannes, D&AD, the One Show and the Clios, the partnership has won <b>'+tot+'</b> individually-documented trophies — '+t.grand+' of them the very top honor at their show. Counted as one record, the scale is hard to overstate.'],
+   [crowns.length,'Triple-Crown-plus ideas','<b>'+crowns.length+'</b> ideas didn\'t just travel — they won at <i>three or more</i> of the four shows. '+crowns.slice(0,3).map(c=>c.title).join(', ')+' and more cleared every jury that saw them.'],
+   [top.total,'the single most-decorated idea','<b>'+top.title+'</b> alone took '+top.total+' trophies across the shows ('+top.ct+' Cannes · '+top.dt+' D&AD · '+top.ot+' One Show · '+top.clt+' Clios) — the centerpiece of the entire record.'],
+   [t.grand,'grand honors','Grand Prix, Black Pencil, Penta, Best of Discipline and Grand Clio — <b>'+t.grand+'</b> times the work reached the absolute summit of a festival. Few partnerships own one; this one owns '+t.grand+'.']];
   document.getElementById('aLearn').innerHTML=cards.map(c=>`<div class="lcard"><div class="lstat">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
-  document.getElementById('aThesis').innerHTML='One method, three verdicts. The same handful of ideas — built big enough to sweep — were judged great by every jury that saw them: <b>'+tot+' trophies</b>, <b>'+t.grand+' grand honors</b>, <b>'+crowns.length+' Triple Crowns</b>. Cannes, D&AD and the One Show disagree on craft and currency, but not on the work.';
+  document.getElementById('aThesis').innerHTML='One method, four verdicts. The same handful of ideas — built big enough to sweep — were judged great by every jury that saw them: <b>'+tot+' trophies</b>, <b>'+t.grand+' grand honors</b>, <b>'+crowns.length+' ideas winning at 3+ shows</b>. Cannes, D&AD, the One Show and the Clios disagree on craft and currency, but not on the work.';
 }
 let aBuilt=false;
 function aHero(){
   const t=aTiers(), tot=aTotal(t);
-  const crowns=A.filter(c=>c.fest===3).length;
+  const crowns=A.filter(c=>c.fest>=3).length;
   document.getElementById('a-total').textContent=tot;
-  document.getElementById('a-grandline').innerHTML=t.grand+' of them the top honor at their show · '+crowns+' ideas won all three.';
+  document.getElementById('a-grandline').innerHTML=t.grand+' of them the top honor at their show · '+crowns+' ideas won at three or more shows.';
   document.getElementById('home-all-stat').textContent=tot+' trophies';
   heroBreak('aBreakdown',[Object.assign({},t)],[['grand','gp','Grand'],['gold','g','Gold tier'],['silver','s','Silver tier'],['bronze','b','Bronze tier'],['special','white','White'],['uncredited','merit','Uncredited']]);
 }
@@ -1731,6 +1948,7 @@ function heroBreak(id,rows,specs){
 heroBreak('cBreakdown',C,[['gp','gp','Grand Prix'],['g','g','Gold'],['s','s','Silver'],['b','b','Bronze']]);
 heroBreak('dBreakdown',D,[['black','black','Black'],['white','white','White'],['yellow','yellow','Yellow'],['graphite','graphite','Graphite'],['wood','wood','Wood']]);
 heroBreak('oBreakdown',O,[['penta','penta','Penta Pencil'],['bod','bod','Best of Discipline'],['gold','g','Gold'],['silver','s','Silver'],['bronze','b','Bronze']]);
+heroBreak('clBreakdown',CL,[['clioGrand','gp','Grand Clio'],['clioGold','g','Gold'],['clioSilver','s','Silver'],['clioBronze','b','Bronze'],['clioSL','sl','Shortlist']]);
 consolidate();
 document.getElementById('home-all-stat').textContent=aTotal()+' trophies';
 
