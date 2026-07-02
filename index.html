@@ -150,6 +150,25 @@
   .allbanner:before{content:"";position:absolute;top:-60px;right:120px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.14),transparent 70%)}
   .allbanner-stat{font-size:46px;font-weight:800;letter-spacing:-.02em;line-height:1;margin:6px 0 4px;color:var(--gold)}
   .allbanner-go{color:var(--gold);font-weight:700;font-size:14px;white-space:nowrap;flex:none}
+  /* titanium shortlists */
+  #titanium{background:linear-gradient(180deg,rgba(28,30,36,.55),transparent)}
+  .ti-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .ti-num{font-size:56px;font-weight:800;letter-spacing:-.02em;line-height:1;
+    background:linear-gradient(135deg,#eef1f6 0%,#9aa3b2 45%,#dfe4ec 60%,#7c8494 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .ti-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  @media(max-width:820px){.ti-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.ti-grid{grid-template-columns:1fr}}
+  .ticard{background:var(--panel);border:1px solid #3a3f4a;border-radius:var(--radius);padding:18px 16px;cursor:pointer;
+    position:relative;overflow:hidden;transition:transform .15s,border-color .15s}
+  .ticard:hover{transform:translateY(-2px);border-color:#5b6474}
+  .ticard:before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,transparent,#aeb7c6,transparent)}
+  .ticard .ty{color:#aeb7c6;font-size:12px;font-weight:700;letter-spacing:.12em}
+  .ticard h3{margin:6px 0 4px;font-size:18px}
+  .ticard .tm{color:var(--mute);font-size:13px}
+  .ticard .tn{color:var(--faint);font-size:11px;margin-top:8px;line-height:1.5}
+  .ti-note{color:var(--faint);font-size:12.5px;margin-top:16px;line-height:1.6}
   /* unified tier ladder */
   .uni-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:8px}
   @media(max-width:820px){.uni-grid{grid-template-columns:repeat(3,1fr)}}
@@ -335,6 +354,7 @@
 <div class="subnav"><div class="wrap">
   <a href="#story">The Story</a>
   <a href="#gp">Grand Prix</a>
+  <a href="#titanium">Titanium</a>
   <a href="#work">The Work</a>
   <a href="#year">By Year</a>
   <a href="#brand">By Brand</a>
@@ -375,6 +395,14 @@
 <section id="gp"><div class="wrap">
   <h2>The 3 Grand Prix — tap to watch</h2>
   <div class="gpgrid" id="gpCards"></div>
+</div></section>
+
+<!-- TITANIUM -->
+<section id="titanium"><div class="wrap">
+  <div class="ti-head"><span class="ti-num" id="tiNum"></span><h2 style="margin:0">Titanium shortlists — the hardest list at Cannes</h2></div>
+  <p class="lead" style="margin-top:10px">Titanium is the festival's award for the provocative, boundary-busting idea — a single jury, a tiny shortlist, no sub-categories to hide in. Just making that list is a career line. Casal Peña have been on it in three different decades of the partnership — at DAVID, with Google, and at GUT.</p>
+  <div class="ti-grid" id="tiCards"></div>
+  <p class="ti-note">Independently verified against the official Cannes Lions archive and festival-press shortlist publications, year by year. In 2016 Titanium and Integrated were a combined category — Whopper Sign's 2016 shortlist ran on the <i>Integrated</i> track and is not counted here. None converted to a Titanium Lion — yet.</p>
 </div></section>
 
 <!-- WORK -->
@@ -862,9 +890,9 @@ const C = [
     {t:"image",f:"McMansions/BURGER KING - MCMANSIONS - DAVID - Cannes Lions 2018 (Supporting Images from The Work - 394147-5107165).jpg"}]},
   {year:2018,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:1,media:[
     {t:"video",f:"Whopper Neutrality/BURGER KING - Whopper Neutrality - DAVID - Cannes Lions 2019 (Case Film from The Work - 606106-5077168).mp4"}]},
-  {year:2018,title:"Turning Beer Into Water",brand:"Anheuser-Busch",agency:"FleishmanHillard",office:"New York",gp:0,g:1,s:0,b:1,media:[
+  {year:2018,title:"Turning Beer Into Water",brand:"Budweiser",agency:"FleishmanHillard",office:"New York",gp:0,g:1,s:0,b:1,media:[
     {t:"video",f:"Turning Beer into Water/ANHEUSER-BUSCH - Turning Beer Into Water - FLEISHMAN HILLARD  - Cannes Lions 2018 (Case Film from The Work - 416723-5051775).mp4"}]},
-  {year:2018,title:"A Little Help From a Bud",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:0,media:[
+  {year:2018,title:"A Little Help From a Bud",brand:"Budweiser",agency:"DAVID",office:"Miami",gp:0,g:0,s:1,b:0,media:[
     {t:"video",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Case Film from The Work - 399027-5098259).mp4"},
     {t:"image",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Supporting Content from The Work - 399027-5077166).jpg"},
     {t:"image",f:"A little help from a Bud/AB INBEV - A LITTLE HELP FROM A BUD - DAVID - Cannes Lions 2018 (Supporting Images from The Work - 399027-5082519).jpg"}]},
@@ -874,7 +902,7 @@ const C = [
     {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5019267).mp3"},
     {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5043015).mp3"},
     {t:"audio",f:"Broiler Salesman/BURGER KING - BROILER SALESMAN - DAVID - Cannes Lions 2018 (MP3 Original Language from The Work - 403680-5043016).mp3"}]},
-  {year:2018,title:"Stand By You",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
+  {year:2018,title:"Stand By You",brand:"Budweiser",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
     {t:"video",f:"Turning Beer into Water/AB-Inbev - STAND BY YOU  - DAVID - Cannes Lions 2018 (Case Film from The Work - 392203-5088924).mp4"},
     {t:"video",f:"Turning Beer into Water/AB-Inbev - STAND BY YOU  - DAVID - Cannes Lions 2018 (Film from The Work - 392203-5088778).mp4"}]},
   {year:2018,title:"Emoji Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",gp:0,g:0,s:0,b:1,media:[
@@ -896,7 +924,7 @@ const C = [
     {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Case Film from The Work - 582330-5979813).mp4"},
     {t:"video",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Film from The Work - 582330-5966611).mp4"},
     {t:"image",f:"Eat Like Andy/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Digital Proof JPG from The Work - 582330-5970381).jpg"}]},
-  {year:2019,title:"Wind Never Felt Better",brand:"AB InBev",agency:"DAVID",office:"Miami",gp:0,g:1,s:0,b:0,media:[
+  {year:2019,title:"Wind Never Felt Better",brand:"Budweiser",agency:"DAVID",office:"Miami",gp:0,g:1,s:0,b:0,media:[
     {t:"video",f:"Wind Never Felt Better/ABINBEV - Wind Never Felt Better - DAVID - Cannes Lions 2019 (Case Film from The Work - 582824-6009467).mp4"},
     {t:"video",f:"Wind Never Felt Better/ABINBEV - Wind Never Felt Better - DAVID - Cannes Lions 2019 (Film from The Work - 582824-6013321).mp4"}]},
   {year:2020,title:"That Look from Popeyes",brand:"Popeyes",agency:"GUT",office:"Miami",gp:0,g:1,s:1,b:1,slug:"that-look-from-popeyes-705024",media:[
@@ -1070,6 +1098,30 @@ document.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
 document.querySelectorAll("#tbl th").forEach(th=>th.addEventListener("click",()=>{
   const k=th.dataset.k; if(sortK===k)sortDir*=-1;else{sortK=k;sortDir=1;} render();
 }));
+
+// Titanium shortlists
+const TI=[
+  {year:2016,title:"Manboobs",brand:"MACMA",agency:"DAVID",office:"Buenos Aires",note:"Titanium track of the combined Titanium & Integrated Lions"},
+  {year:2017,title:"Google Home of the Whopper",brand:"Burger King",agency:"DAVID",office:"Miami",note:"Same year it took the Direct Grand Prix"},
+  {year:2017,title:"Scariest BK",brand:"Burger King",agency:"DAVID",office:"Miami"},
+  {year:2018,title:"Whopper Neutrality",brand:"Burger King",agency:"DAVID",office:"Miami"},
+  {year:2022,title:"Real Tone",brand:"Google",agency:"Google · GUT",office:"Mountain View / Miami",note:"Shared credit: Google, T Brand Studio, W+K, GUT Miami"},
+  {year:2026,title:"The Undropped Kit",brand:"ASICS",agency:"GUT",office:"Toronto"},
+];
+function buildTitanium(){
+  document.getElementById('tiNum').textContent=TI.length;
+  document.getElementById('tiCards').innerHTML=TI.map((t,i)=>`<div class="ticard" data-ti="${i}">
+    <div class="ty">${t.year} · SHORTLIST</div>
+    <h3>${t.title}</h3>
+    <div class="tm">${t.brand} · ${t.agency}, ${t.office}</div>
+    ${t.note?`<div class="tn">${t.note}</div>`:''}
+  </div>`).join('');
+  document.querySelectorAll('#tiCards .ticard').forEach(el=>el.addEventListener('click',()=>{
+    const t=TI[+el.dataset.ti];
+    const c=C.find(c=>c.title.toLowerCase().startsWith(t.title.toLowerCase().slice(0,12)));
+    if(c)openModal(c);
+  }));
+}
 
 // GP cards
 function buildGP(){
@@ -1508,7 +1560,7 @@ heroBreak('oBreakdown',O,[['penta','penta','Penta Pencil'],['bod','bod','Best of
 consolidate();
 document.getElementById('home-all-stat').textContent=aTotal()+' trophies';
 
-render();buildGP();
+render();buildGP();buildTitanium();
 let _rt; window.addEventListener('resize',()=>{clearTimeout(_rt);_rt=setTimeout(()=>{ if(!document.getElementById('view-cannes').hidden) buildCharts(); if(!document.getElementById('view-dnad').hidden) dCharts(); if(!document.getElementById('view-oneshow').hidden) oCharts(); if(!document.getElementById('view-all').hidden) aCharts(); },180);});
 </script>
 </body>
