@@ -171,6 +171,19 @@
   .sbpress{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
   .sbpress .pq{color:var(--ink);font-size:13.5px;line-height:1.6;margin-bottom:8px;font-style:italic}
   .sbpress .po{color:var(--faint);font-style:normal;font-size:12px;white-space:nowrap}
+  .sbrow{display:grid;grid-template-columns:74px minmax(0,1fr) 130px;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:10px;cursor:pointer;transition:border-color .15s}
+  .sbrow:hover{border-color:#4a7a5c}
+  .sbrow .rknum{font-size:26px;font-weight:800;letter-spacing:-.02em;color:#8fc6f0;white-space:nowrap}
+  .sbrow.top .rknum{color:#8ff0b8}
+  .sbrow.last .rknum{color:#f08f8f}
+  .sbrow .rkmid .t{font-weight:700;color:var(--ink);font-size:15px}
+  .sbrow .rkmid .m{color:var(--faint);font-size:12px;margin-top:2px}
+  .sbrow .rkbar{height:6px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:8px}
+  .sbrow .rkbar i{display:block;height:100%;background:linear-gradient(90deg,#1e7a4d,#8ff0b8);border-radius:99px}
+  .sbrow.last .rkbar i{background:linear-gradient(90deg,#7a1e1e,#f08f8f)}
+  .sbrow .rkright{text-align:right;color:var(--mute);font-size:12.5px;line-height:1.5}
+  .sbrow.unranked .rknum{color:var(--faint);font-size:15px;font-weight:700}
+  @media(max-width:560px){.sbrow{grid-template-columns:56px minmax(0,1fr)}.sbrow .rkright{display:none}}
   /* titanium shortlists */
   #titanium{background:linear-gradient(180deg,rgba(28,30,36,.55),transparent)}
   .ti-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
@@ -775,6 +788,12 @@
   </div>
 </div></header>
 <section><div class="wrap">
+  <h2>The Ad Meter board — every ranking, together</h2>
+  <p class="lead" style="margin-top:6px">USA TODAY's Ad Meter asks thousands of Americans to rate every national Super Bowl spot. Here's where each one landed, best to worst — tap a row to jump to its film.</p>
+  <div id="sbBoard"></div>
+</div></section>
+
+<section><div class="wrap">
   <h2>Every spot, in order — tap play</h2>
   <div id="sbCards"></div>
   <div class="thesis" style="margin-top:30px">
@@ -1292,7 +1311,7 @@ function showView(v){
 /* ===== SUPER BOWL ===== */
 const SB=[
  {sb:"Super Bowl 50",date:"Feb 7, 2016",year:2016,title:"Wiener Stampede",brand:"Heinz",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #2 of 63 · 6.63",cls:"top"},
+  admeter:{label:"Ad Meter #2 of 63 · 6.63",cls:"top",rk:2,of:63,score:6.63},
   awards:["2 Bronze Lions — Cannes 2016","Silver Clio — Film"],
   f:"2. Super Bowl Ads/KRAFT - Wiener Stampede - DAVID - Cannes Lions 2017 (Film from The Work - 31066-2157818).mp4",
   analysis:"A stampede of dachshunds in hot-dog buns sprints across a golden field into the arms of humans dressed as Heinz bottles, scored to Harry Nilsson's 'Without You.' A product truth — hot dogs need ketchup — compressed into pure, meme-ready joy: no celebrity, no plot, just an image you can describe in one sentence. It went viral before kickoff, finished #2 of 63 (the year's top non-automotive spot), and relaunched the whole 'Meet the Ketchups' family.",
@@ -1300,7 +1319,7 @@ const SB=[
          {h:"Watch an Adorable Stampede of Wiener Dogs in Heinz's Super Bowl Ad",o:"TIME"},
          {h:"Cutest stampede ever? Heinz's Super Bowl ad features a barrage of wiener dogs",o:"TODAY"}]},
  {sb:"Super Bowl LII",date:"Feb 4, 2018",year:2018,title:"Stand By You",brand:"Budweiser",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #3 of 65 · 6.84",cls:"top"},
+  admeter:{label:"Ad Meter #3 of 65 · 6.84",cls:"top",rk:3,of:65,score:6.84},
   awards:["Bronze Lion — Cannes 2018","One Show Merit — PR"],
   f:"2. Super Bowl Ads/AB-Inbev - STAND BY YOU  - DAVID - Cannes Lions 2018 (Film from The Work - 392203-5088778).mp4",
   analysis:"After Harvey, Irma, Maria and the California wildfires, Budweiser dramatized a real operational fact: its Cartersville brewery stops making beer to can emergency drinking water. Real employees, a stripped-down cover of 'Stand By Me,' and a program with receipts — 79 million cans donated over 30 years — made it purpose marketing that couldn't be called woke-washing. #3 of 65 proved corporate citizenship could beat celebrity comedy on game night.",
@@ -1308,14 +1327,14 @@ const SB=[
          {h:"Budweiser Splashes Water in Super Bowl Ad Meant to Sell Beer",o:"Variety"},
          {h:"Budweiser's Super Bowl Ad Taps The Brand's Best Marketing Tool",o:"Forbes"}]},
  {sb:"Super Bowl LIII",date:"Feb 3, 2019",year:2019,title:"Wind Never Felt Better",brand:"Budweiser",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #8 of 58 · 6.41",cls:"top"},
+  admeter:{label:"Ad Meter #8 of 58 · 6.41",cls:"top",rk:8,of:58,score:6.41},
   awards:["Gold Lion — Cannes 2019, PR"],
   f:"2. Super Bowl Ads/ABINBEV - Wind Never Felt Better - DAVID - Cannes Lions 2019 (Film from The Work - 582824-6013321).mp4",
   analysis:"The Clydesdales pull the wagon — Dalmatian on top, ears flapping — through a landscape of wind turbines to Bob Dylan's 'Blowin' in the Wind,' ending on 'Now brewed with wind power.' An ESG announcement smuggled inside Budweiser's most beloved iconography: sustainability as Americana instead of a press release. The most-watched Super Bowl spot on YouTube before the game, #8 of 58 on the night, and a Gold PR Lion after it.",
   press:[{h:"Budweiser's Clydesdales Are Back for a Renewable Energy Message With a Bob Dylan Soundtrack",o:"Adweek"},
          {h:"Bob Dylan's 'Blowin' in the Wind' Soundtracks Budweiser Super Bowl Ad",o:"Billboard"}]},
  {sb:"Super Bowl LIII",date:"Feb 3, 2019",year:2019,title:"#EatLikeAndy",brand:"Burger King",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #58 of 58 — dead last, by design",cls:"last"},
+  admeter:{label:"Ad Meter #58 of 58 — dead last, by design",cls:"last",rk:58,of:58,score:3.63},
   awards:["Silver + Bronze Lions — Cannes 2019","D&AD Graphite + 2 Wood Pencils","Bronze Clio — Film"],
   f:"2. Super Bowl Ads/BURGER KING - Eat like Andy - DAVID - Cannes Lions 2019 (Film from The Work - 582330-5966611).mp4",
   analysis:"Forty-five seconds of Jørgen Leth's 1982 art film '66 Scenes From America' — Andy Warhol silently unwrapping and eating a Whopper — ran nearly untouched after a year of rights negotiations with the Warhol Foundation. Against a break full of explosions and celebrities, a silent assassin: no music, no voiceover, just #EatLikeAndy. America ranked it dead last; Burger King's CMO declared himself 'very proud' of that. It drove the game's biggest what-did-I-just-watch conversation and became the era's defining case study in the split between ad-polling and cultural penetration — a Warholian loop 37 years in the making.",
@@ -1323,21 +1342,21 @@ const SB=[
          {h:"Yes, That Was Really Andy Warhol in Burger King's Super Bowl Commercial. Here's the Story",o:"Artnet News"},
          {h:"Why You Saw Andy Warhol in That 2019 Super Bowl Ad",o:"TIME"}]},
  {sb:"Super Bowl LIII",date:"Feb 3, 2019",year:2019,title:"Food Porn",brand:"DEVOUR (Kraft Heinz)",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #45 of 58 · 4.84"},
+  admeter:{label:"Ad Meter #45 of 58 · 4.84",rk:45,of:58,score:4.84},
   awards:[],
   f:"2. Super Bowl Ads/KRAFT - Food Porn - DAVID - Cannes Lions 2019 (Film from The Work - 583255-5964793).mp4",
   analysis:"To launch an unknown frozen-food brand on the biggest stage, the 'food porn' idiom got played completely straight: a mockumentary about a man's 'insatiable addiction to frozen food porn,' a censored broadcast cut, an 'uncensored' web version and a 1-83-FOODPORN hotline. The unairable word guaranteed the pre-game news cycle and bought a zero-awareness brand outsized earned media for a single :30 — but the joke split the living room and won nothing after: the slate's cautionary tale that shock buys attention, only substance keeps it.",
   press:[{h:"You Can't Say 'Porn' in a Super Bowl Ad, So Devour Released an Uncensored Version of Its Spot",o:"Adweek"},
          {h:"Devour's 'uncensored' food porn spot drops ahead of Super Bowl",o:"Marketing Dive"}]},
  {sb:"Super Bowl LIV",date:"Feb 2, 2020",year:2020,title:"Typical American",brand:"Budweiser",agency:"DAVID, Miami",
-  admeter:{label:"Ad Meter #12 of 62 · 5.98"},
+  admeter:{label:"Ad Meter #12 of 62 · 5.98",rk:12,of:62,score:5.98},
   awards:["Kathryn Bigelow's first-ever commercial"],
   f:"2. Super Bowl Ads/ABINBEV - Typical Americans- DAVID - Cannes Lions .mp4",
   analysis:"In an election year, the insult 'typical American' turned inside out: a montage of real, viral acts of ordinary heroism set against the sarcastic stereotypes Americans get labeled with — 'show-offs,' 'excessive.' Oscar-winner Kathryn Bigelow's commercial debut, cut largely from found documentary footage, it logged 15M YouTube views by results day and finished #12 of 62 with no celebrity gag — the real-people, real-footage formula at full strength. (Cannes 2020 never happened; the festival was cancelled.)",
   press:[{h:"Budweiser Challenges American Stereotypes in Patriotic Super Bowl Ad",o:"Adweek"},
          {h:"Budweiser's emotional Super Bowl commercial is all about combatting stereotypes",o:"TODAY"}]},
  {sb:"Super Bowl LVI",date:"Feb 13, 2022",year:2022,title:"Lizzo in Real Tone · #SeenOnPixel",brand:"Google Pixel 6",agency:"Google · GUT, Miami",
-  admeter:{label:"Ad Meter #20 of 66"},
+  admeter:{label:"Ad Meter #20 of 66",rk:20,of:66},
   awards:["Anchored Real Tone: Mobile Grand Prix — Cannes 2022","D&AD Black Pencil","One Show — IP & Products","Titanium shortlist"],
   f:"2. Super Bowl Ads/GOOGLE - Pixel - Lizzo in Real Tone.mp4",
   analysis:"Cameras were historically calibrated for lighter skin — so Google rebuilt the Pixel's imaging pipeline and proved it on the Super Bowl with a montage of Black and brown families finally 'seen,' scored by an unreleased Lizzo song. An ad about the product's ethics rather than its specs: the #20 Ad Meter finish undersells a spot that anchored the campaign that swept 2022 — Mobile Grand Prix at Cannes, a D&AD Black Pencil, a One Show win — and pushed 'image equity' into the marketing vocabulary.",
@@ -1352,7 +1371,7 @@ const SB=[
   press:[{h:"He became a meme at age 9. A decade later, this college football player has the last laugh: a deal with Popeyes",o:"CNN Business"},
          {h:"The Now-Adult Popeyes Kid Goes 'From Meme to Dreams' In New Super Bowl Commercial",o:"Okayplayer"}]},
  {sb:"Super Bowl LVIII",date:"Feb 11, 2024",year:2024,title:"Javier in Frame",brand:"Google Pixel 8",agency:"GUT, Miami · Google Creative Lab",
-  admeter:{label:"Ad Meter #11 of 59 · 5.80"},
+  admeter:{label:"Ad Meter #11 of 59 · 5.80",rk:11,of:59,score:5.80},
   awards:["One Show Bronze — Film","Cannes 2024 shortlists — Film & Innovation","#1 — Kellogg & Columbia ad reviews","~50M YouTube views"],
   f:"2. Super Bowl Ads/GOOGLE - Pixel - Javier in Frame.mp4",
   analysis:"A blind man photographs his whole life — falling in love, a wedding, a baby — using Guided Frame, the Pixel feature that talks users into framing a shot. The masterstroke was authorship: blind filmmaker Adam Morse directed (a Super Bowl first), smearing the lens so 120 million viewers would see the world as Javier does — representation executed in craft, not just casting. #11 of 59 with America, first place in both the Kellogg and Columbia academic reviews, a One Show Bronze, and ~50 million YouTube views and counting.",
@@ -1360,7 +1379,22 @@ const SB=[
          {h:"Super Bowl's Best Ads: Google Pixel and Verizon Ranked Best of the Night",o:"Columbia Business School"}]},
 ];
 function sbBuild(){
-  document.getElementById('sbCards').innerHTML=SB.map(a=>`<div class="sbcard">
+  const ranked=SB.map((a,i)=>({a,i})).filter(x=>x.a.admeter.rk).sort((x,y)=>x.a.admeter.rk/x.a.admeter.of - y.a.admeter.rk/y.a.admeter.of);
+  const unranked=SB.map((a,i)=>({a,i})).filter(x=>!x.a.admeter.rk);
+  document.getElementById('sbBoard').innerHTML=ranked.map(({a,i})=>{
+    const pct=Math.max(4,Math.round((1-(a.admeter.rk-1)/(a.admeter.of-1))*100));
+    const cls=a.admeter.cls||'';
+    return `<div class="sbrow ${cls}" data-sb="${i}">
+      <div class="rknum">#${a.admeter.rk}</div>
+      <div class="rkmid"><div class="t">${a.title}</div><div class="m">${a.brand} · ${a.sb} · ${a.year}</div><div class="rkbar"><i style="width:${pct}%"></i></div></div>
+      <div class="rkright">of ${a.admeter.of} ads${a.admeter.score?`<br>score ${a.admeter.score.toFixed(2)}`:''}<br>top ${Math.max(1,Math.round(a.admeter.rk/a.admeter.of*100))}%</div>
+    </div>`;}).join('')
+    + unranked.map(({a,i})=>`<div class="sbrow unranked" data-sb="${i}">
+      <div class="rknum">N/A</div>
+      <div class="rkmid"><div class="t">${a.title}</div><div class="m">${a.brand} · ${a.sb} · ${a.year}</div></div>
+      <div class="rkright">regional buy —<br>not ranked</div>
+    </div>`).join('');
+  document.getElementById('sbCards').innerHTML=SB.map(a=>`<div class="sbcard" id="sbc-${SB.indexOf(a)}">
     <div><video controls preload="metadata" src="${CP+encodeURI(a.f)}"></video></div>
     <div>
       <div class="sbeyebrow">${a.sb} · ${a.date}</div>
@@ -1371,6 +1405,10 @@ function sbBuild(){
       <div class="sbpress">${a.press.map(p=>`<div class="pq">“${p.h}” <span class="po">— ${p.o}</span></div>`).join('')}</div>
     </div>
   </div>`).join('');
+  document.querySelectorAll('#sbBoard .sbrow').forEach(el=>el.addEventListener('click',()=>{
+    const c=document.getElementById('sbc-'+el.dataset.sb);
+    if(c){c.scrollIntoView({behavior:'smooth',block:'center'});}
+  }));
 }
 
 /* ===== D&AD ===== */
