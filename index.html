@@ -913,7 +913,7 @@
   <a href="#a-story">The Story</a>
   <a href="#a-fest">By Festival</a>
   <a href="#a-tier">Unified Tiers</a>
-  <a href="#a-crown">Triple Crown</a>
+  <a href="#a-crown">Grand Slam</a>
   <a href="#a-work">Every Idea</a>
   <a href="#a-year">By Year</a>
   <a href="#a-learn">Conclusions</a>
@@ -951,7 +951,7 @@
 </div></section>
 
 <section id="a-crown"><div class="wrap">
-  <h2>The Triple Crown &amp; Grand Slam — ideas that won at three or more shows — tap to watch</h2>
+  <h2>The Grand Slam — ideas that won at all four shows — tap to watch</h2>
   <div class="gpgrid" id="aCrownCards"></div>
 </div></section>
 
@@ -1894,9 +1894,9 @@ function aUni(){
   document.getElementById('aUni').innerHTML=cards.map(c=>`<div class="uni"><div class="uv" style="color:${c[4]}">${c[1]}</div><div class="ul">${c[2]}</div><div class="um">${c[3]}</div></div>`).join('');
 }
 function aCrownCards(){
-  const crowns=A.filter(c=>c.fest>=3).sort((a,b)=>b.fest-a.fest||b.total-a.total||b.grand-a.grand);
+  const crowns=A.filter(c=>c.fest===4).sort((a,b)=>b.total-a.total||b.grand-a.grand);
   document.getElementById('aCrownCards').innerHTML=crowns.map(c=>`<div class="gpcard" data-a="${c.ai}">
-    <div class="disc" style="color:var(--gold)">${c.fest===4?'★★ GRAND SLAM — all four shows':'★ Triple Crown'} · ${c.total} trophies</div>
+    <div class="disc" style="color:var(--gold)">★★ GRAND SLAM — all four shows · ${c.total} trophies</div>
     <h3>${c.title}</h3>
     <div class="meta">${c.brand} · ${c.agency}, ${c.office}</div>
     <div class="split">Cannes ${c.ct} · D&AD ${c.dt} · One Show ${c.ot} · Clios ${c.clt}${c.grand?` · <b style="color:var(--gold)">${c.grand} grand</b>`:''}</div>
@@ -1913,22 +1913,22 @@ function aAggYears(){const Y=[2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,
 function aCharts(){ lineChart('aYearChart',aAggYears(),{rot:false,padB:32,h:300}); }
 function aConclusions(){
   const t=aTiers(), tot=aTotal(t);
-  const crowns=A.filter(c=>c.fest>=3).sort((a,b)=>b.fest-a.fest||b.total-a.total);
+  const crowns=A.filter(c=>c.fest===4).sort((a,b)=>b.total-a.total);
   const top=A.slice().sort((a,b)=>b.total-a.total)[0];
   const cards=[
    [tot,'trophies, one body of work','Across Cannes, D&AD, the One Show and the Clios, the partnership has won <b>'+tot+'</b> individually-documented trophies — '+t.grand+' of them the very top honor at their show. Counted as one record, the scale is hard to overstate.'],
-   [crowns.length,'Triple-Crown-plus ideas','<b>'+crowns.length+'</b> ideas didn\'t just travel — they won at <i>three or more</i> of the four shows. '+crowns.slice(0,3).map(c=>c.title).join(', ')+' and more cleared every jury that saw them.'],
+   [crowns.length,'Grand Slam ideas','<b>'+crowns.length+'</b> ideas didn\'t just travel — they won at <i>all four</i> shows. '+crowns.slice(0,3).map(c=>c.title).join(', ')+' and more cleared every single jury that saw them.'],
    [top.total,'the single most-decorated idea','<b>'+top.title+'</b> alone took '+top.total+' trophies across the shows ('+top.ct+' Cannes · '+top.dt+' D&AD · '+top.ot+' One Show · '+top.clt+' Clios) — the centerpiece of the entire record.'],
    [t.grand,'grand honors','Grand Prix, Black Pencil, Penta, Best of Discipline and Grand Clio — <b>'+t.grand+'</b> times the work reached the absolute summit of a festival. Few partnerships own one; this one owns '+t.grand+'.']];
   document.getElementById('aLearn').innerHTML=cards.map(c=>`<div class="lcard"><div class="lstat">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
-  document.getElementById('aThesis').innerHTML='One method, four verdicts. The same handful of ideas — built big enough to sweep — were judged great by every jury that saw them: <b>'+tot+' trophies</b>, <b>'+t.grand+' grand honors</b>, <b>'+crowns.length+' ideas winning at 3+ shows</b>. Cannes, D&AD, the One Show and the Clios disagree on craft and currency, but not on the work.';
+  document.getElementById('aThesis').innerHTML='One method, four verdicts. The same handful of ideas — built big enough to sweep — were judged great by every jury that saw them: <b>'+tot+' trophies</b>, <b>'+t.grand+' grand honors</b>, <b>'+crowns.length+' Grand Slams</b>. Cannes, D&AD, the One Show and the Clios disagree on craft and currency, but not on the work.';
 }
 let aBuilt=false;
 function aHero(){
   const t=aTiers(), tot=aTotal(t);
-  const crowns=A.filter(c=>c.fest>=3).length;
+  const crowns=A.filter(c=>c.fest===4).length;
   document.getElementById('a-total').textContent=tot;
-  document.getElementById('a-grandline').innerHTML=t.grand+' of them the top honor at their show · '+crowns+' ideas won at three or more shows.';
+  document.getElementById('a-grandline').innerHTML=t.grand+' of them the top honor at their show · '+crowns+' Grand Slam ideas won at all four.';
   document.getElementById('home-all-stat').textContent=tot+' trophies';
   heroBreak('aBreakdown',[Object.assign({},t)],[['grand','gp','Grand'],['gold','g','Gold tier'],['silver','s','Silver tier'],['bronze','b','Bronze tier'],['special','white','White'],['uncredited','merit','Uncredited']]);
 }
