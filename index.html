@@ -1838,7 +1838,7 @@ function aTiers(){
   return t;
 }
 function aTotal(t){t=t||aTiers();return t.grand+t.gold+t.silver+t.bronze+t.special+t.uncredited;}
-let aSortK='total',aSortDir=-1;
+let aSortK='year',aSortDir=1;
 function fcell(n,cls){return n>0?`<span class="fcell ${cls}">${n}</span>`:`<span class="fcell z">·</span>`;}
 function aRender(){
   const data=A.slice().sort((a,b)=>{let va=a[aSortK],vb=b[aSortK];if(typeof va==='string'){va=va.toLowerCase();vb=vb.toLowerCase();}return(va<vb?-1:va>vb?1:0)*aSortDir;});
